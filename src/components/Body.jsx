@@ -1,16 +1,43 @@
-import Login from "../pages/Login"
-import Browse from "./Browse"
-import Header from "./Header"
+import { Outlet, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { removeCurrentUser, setCurrentUser } from "../store/slices/userSlice";
+import Header from "./Header";
 
 const Body = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName } = user;
+        dispatch(
+          setCurrentUser({
+            uid: uid,
+            email: email,
+            name: displayName,
+          }),
+        );
+
+        navigate("/browse");
+      } else {
+        dispatch(removeCurrentUser());
+        navigate("/");
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   return (
-    <div>
-        <Header />
-        <Login />
-    </div>
-  )
-}
+    <>
+      <Header />
+      <Outlet />
+    </>
+  );
+};
 
-export default Body
+export default Body;
