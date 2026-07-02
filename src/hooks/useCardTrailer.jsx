@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constants";
-import { useDispatch } from "react-redux";
-import { setMovieTrailer } from "../store/slices/movieSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setCardTrailer } from "../store/slices/movieSlice";
 
-const useMovieTrailer = (movieId) => {
+const useCardTrailer = (movieId) => {
   const dispatch = useDispatch();
+  const trailer = useSelector((state) => state.movie.cardTrailer[movieId]);
   const getMovieTrailer = async () => {
     try {
       const data = await fetch(
@@ -17,8 +18,8 @@ const useMovieTrailer = (movieId) => {
 
       const trailors = json.results.filter((video) => video.type === "Trailer");
       const trailer = trailors[0];
-      //console.log(getTrailor);
-      dispatch(setMovieTrailer(trailer));
+      console.log("card trailer", trailer);
+      dispatch(setCardTrailer({ movieId, trailer: trailer || null }));
     } catch (error) {
       console.log("Error getting trailer: ", error);
     }
@@ -26,8 +27,9 @@ const useMovieTrailer = (movieId) => {
 
   useEffect(() => {
     if (!movieId) return;
+    if (trailer) return;
     getMovieTrailer();
-  }, [movieId]);
+  }, [movieId, trailer]);
 };
 
-export default useMovieTrailer;
+export default useCardTrailer;

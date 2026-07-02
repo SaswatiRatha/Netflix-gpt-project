@@ -5,14 +5,18 @@ import { addNowPlayingMovies } from "../store/slices/movieSlice";
 const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
   const getNowPlayingMovies = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?page=1",
-      API_OPTIONS,
-    );
+    try {
+      const data = await fetch(
+        "https://api.themoviedb.org/3/movie/now_playing?page=1",
+        API_OPTIONS,
+      );
 
-    const json = await data.json();
-    console.log(json.results);
-    dispatch(addNowPlayingMovies(json.results));
+      const json = await data.json();
+      console.log(json.results);
+      dispatch(addNowPlayingMovies(json.results));
+    } catch (error) {
+      console.log("Error fetching now playing movies: ", error);
+    }
   };
 
   useEffect(() => {

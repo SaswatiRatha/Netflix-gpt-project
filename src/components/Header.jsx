@@ -3,10 +3,11 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { LOGO } from "../utils/constants";
+import SearchBar from "./SearchBar";
 
 const Header = () => {
   const user = useSelector((state) => state.user.currentUser);
-  console.log(user);
+  //console.log(user);
 
   const navigate = useNavigate();
   const handleSignOut = () => {
@@ -20,14 +21,17 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-between absolute z-10 w-screen px-8 py-4 shadow-lg bg-linear-to-b from-black">
-      <img className="w-40" src={LOGO} alt="logo" />
+    <div className="absolute left-0 top-0 z-10 flex w-full flex-row items-center justify-between gap-3 bg-linear-to-b from-black px-4 py-3 shadow-lg sm:px-8 sm:py-4">
+      <img className="w-24 sm:w-32 lg:w-38" src={LOGO} alt="logo" />
       {user && (
-        <div className="flex">
-          <h1 className="font-bold text-white">Hello {user.name}!</h1>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <SearchBar />
+          <h1 className="text-sm font-bold text-white sm:text-base">
+            Hello {user.name}!
+          </h1>
           <button
             onClick={handleSignOut}
-            className="bg-red-400 p-2 m-2 rounded-md text-white"
+            className="rounded-md bg-red-400 px-3 py-2 text-sm text-white transition-all duration-150 hover:bg-red-500 sm:px-4 sm:text-base"
           >
             Sign Out
           </button>
