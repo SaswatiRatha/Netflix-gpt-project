@@ -21,8 +21,21 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute left-0 top-0 z-10 flex w-full flex-row items-center justify-between gap-3 bg-linear-to-b from-black px-4 py-3 shadow-lg sm:px-8 sm:py-4">
-      <img className="w-24 sm:w-32 lg:w-38" src={LOGO} alt="logo" />
+    <header className="fixed left-0 top-0 z-50 flex w-full flex-row items-center justify-between gap-3 bg-black/70 px-4 py-3 shadow-lg sm:px-8 sm:py-4">
+      <img
+        className="w-24 sm:w-32 lg:w-38 cursor-pointer"
+        src={LOGO}
+        alt="logo"
+        onClick={() => navigate("browse")}
+      />
+      <ul className="flex gap-3 text-lg text-white decoration-0 cursor-pointer">
+        <li className="active:font-bold" onClick={() => navigate("browse")}>
+          Home
+        </li>
+        <li>Movies</li>
+        <li>TV Shows</li>
+        <li onClick={() => navigate("watchlist")}>My List</li>
+      </ul>
       {user && (
         <div className="flex items-center gap-2 sm:gap-3">
           <SearchBar />
@@ -37,7 +50,7 @@ const Header = () => {
           </button>
         </div>
       )}
-    </div>
+    </header>
   );
 };
 

@@ -33,10 +33,10 @@ const Body = () => {
   }, []);
 
   return (
-    <>
+    <div className="pt-20 sm:pt-2">
       <Header />
       <Outlet />
-    </>
+    </div>
   );
 };
 

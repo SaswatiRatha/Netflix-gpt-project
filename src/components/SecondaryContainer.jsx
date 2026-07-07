@@ -1,19 +1,35 @@
-import { useSelector } from "react-redux";
 import MovieList from "./MovieList";
 
 const SecondaryContainer = () => {
-  const nowPlayingMovies = useSelector((state) => state.movie.nowPlaying);
-  const popularMovies = useSelector((state) => state.movie.popularMovies);
-  const topRatedMovies = useSelector((state) => state.movie.topRatedMovies);
-  const upcomingMovies = useSelector((state) => state.movie.upcomingMovies);
-
   return (
     <div className="bg-black">
-      <div className="relative z-10 -mt-10 pb-8 sm:-mt-20 md:-mt-28 lg:-mt-46">
-        <MovieList title="Now Playing" movies={nowPlayingMovies} />
-        <MovieList title="Popular" movies={popularMovies} />
-        <MovieList title="Top Rated" movies={topRatedMovies} />
-        <MovieList title="Upcoming" movies={upcomingMovies} />
+      <div className="relative z-10 -mt-10 pb-8 sm:-mt-14 md:-mt-8 lg:-mt-8">
+        <MovieList title="New Releases" moviesKey="nowPlaying" type="movie" />
+        <MovieList title="Popular" moviesKey="popularMovies" type="movie" />
+        <MovieList
+          title="Top 10 in Movies Today"
+          moviesKey="trendingMovie"
+          type="movie"
+        />
+        <MovieList
+          title="Critically Acclaimed"
+          moviesKey="topRatedMovies"
+          type="movie"
+        />
+        <MovieList
+          title="Upcoming Movies"
+          moviesKey="upcomingMovies"
+          type="movie"
+        />
+
+        <MovieList title="Top Rated TV" moviesKey="topRatedTV" type="tv" />
+        <MovieList title="Popular TV Shows" moviesKey="popularTv" type="tv" />
+        <MovieList
+          title="Top 10 in TV Today"
+          moviesKey="trendingTV"
+          type="tv"
+        />
+        <MovieList title="On The Air" moviesKey="onTheAir" type="tv" />
       </div>
     </div>
   );

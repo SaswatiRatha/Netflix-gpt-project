@@ -3,17 +3,18 @@ import VideoTitle from "./VideoTitle";
 import VideoBackground from "./VideoBackground";
 
 const MainContainer = () => {
-  const movies = useSelector((state) => state.movie?.nowPlaying);
+  const movies = useSelector((state) => state.movie?.trending);
   if (!movies) return;
   //console.log(movies);
-  const mainMovie = movies[14];
+  const mainMovie = movies[0];
   //console.log(mainMovie);
-  const { id, title, overview } = mainMovie;
 
   return (
     <div>
-      <VideoTitle title={title} overview={overview} />
-      <VideoBackground movieId={id} />
+      <VideoTitle movie={mainMovie} />
+      <div className="w-screen aspect-video">
+        <VideoBackground movieId={mainMovie.id} type="movie" />
+      </div>
     </div>
   );
 };
