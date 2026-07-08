@@ -3,12 +3,12 @@ import { API_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { setMovieGenre } from "../store/slices/movieSlice";
 
-const useMovieGenre = (movieId) => {
+const useMovieGenre = (movieId, type = "movie") => {
   const dispatch = useDispatch();
   const getGenre = async () => {
     try {
       const data = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
+        `https://api.themoviedb.org/3/${type}/${movieId}?language=en-US`,
         API_OPTIONS,
       );
       const json = await data.json();

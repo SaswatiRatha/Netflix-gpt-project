@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
-import MoviePoster from "./MoviePoster";
+import MovieCard from "./MovieCard";
 import { LOGIN_BG } from "../utils/constants";
+import MoreInfoModal from "./MoreInfoModal";
 
 const SearchResults = () => {
   const searchResultMovies =
@@ -9,6 +10,7 @@ const SearchResults = () => {
   const searchText = useSelector((state) => state.gpt.searchText);
   console.log("searchResultMovies: ", searchResultMovies);
   console.log("aiRecommendations: ", aiRecommendations);
+  const isModalOpen = useSelector((state) => state.movie.isModalOpen);
 
   const movies = Array.from(
     new Map(
@@ -30,15 +32,16 @@ const SearchResults = () => {
         Showing Results for {searchText}...
       </h1>
       <div className="relative z-20 mx-4 grid grid-cols-3 gap-3 py-6 sm:mx-8 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-7">
-        {movies.map((movie) => (
-          <div
+        {movies.map((movie, index) => (
+          <MovieCard
             key={movie.id}
-            className="h-60 w-full max-w-40 transition-transform duration-200 hover:scale-105"
-          >
-            <MoviePoster posterPath={movie.poster_path} />
-          </div>
+            movie={movie}
+            index={index}
+            totalMovies={movies.length}
+          />
         ))}
       </div>
+      {isModalOpen && <MoreInfoModal />}
     </div>
   );
 };

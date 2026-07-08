@@ -12,7 +12,11 @@ const usePopularMovies = () => {
       );
       const json = await data.json();
       //console.log(json.results);
-      dispatch(setPopularMovies(json.results));
+      const movies = json.results.map((movie) => ({
+        ...movie,
+        media_type: "movie",
+      }));
+      dispatch(setPopularMovies(movies));
     } catch (error) {
       console.log("Error fetching popular movies: ", error);
     }

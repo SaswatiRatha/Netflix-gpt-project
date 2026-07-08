@@ -6,7 +6,7 @@ const initialState = {
   topRatedMovies: null,
   upcomingMovies: null,
   trailersById: {},
-  selectedMovie: null,
+  selectedMovie: {},
   isModalOpen: false,
   movieCasts: null,
   movieGenre: null,
@@ -18,6 +18,9 @@ const initialState = {
   topRatedTV: null,
   onTheAir: null,
   similarShows: null,
+  certificate: "",
+  tvDetails: null,
+  episodes: null,
 };
 
 const movieSlice = createSlice({
@@ -43,9 +46,9 @@ const movieSlice = createSlice({
       state.upcomingMovies = action.payload;
     },
     setCardTrailer: (state, action) => {
-      const { movieId, trailer } = action.payload;
-      if (movieId) {
-        state.trailersById[movieId] = trailer;
+      const { trailerKey, trailer } = action.payload;
+      if (trailerKey) {
+        state.trailersById[trailerKey] = trailer;
       }
     },
     openModal: (state, action) => {
@@ -66,7 +69,18 @@ const movieSlice = createSlice({
       state.popularTv = action.payload;
     },
     addToWatchList: (state, action) => {
-      state.myList.push(action.payload);
+      console.log(action.payload);
+
+      const exists = state.myList.find((item) => item.id === action.payload.id);
+      console.log(exists);
+
+      if (!exists) {
+        state.myList.push(action.payload);
+      } else {
+        state.myList = state.myList.filter(
+          (movie) => movie.id !== action.payload.id,
+        );
+      }
     },
     setTrending: (state, action) => {
       state.trending = action.payload;
@@ -85,6 +99,15 @@ const movieSlice = createSlice({
     },
     setSimilarShows: (state, action) => {
       state.similarShows = action.payload;
+    },
+    setCertificate: (state, action) => {
+      state.certificate = action.payload;
+    },
+    setTvDetails: (state, action) => {
+      state.tvDetails = action.payload;
+    },
+    setEpisodes: (state, action) => {
+      state.episodes = action.payload;
     },
   },
 });
@@ -108,5 +131,8 @@ export const {
   setTopRatedTV,
   setOnTheAir,
   setSimilarShows,
+  setCertificate,
+  setTvDetails,
+  setEpisodes,
 } = movieSlice.actions;
 export default movieSlice.reducer;

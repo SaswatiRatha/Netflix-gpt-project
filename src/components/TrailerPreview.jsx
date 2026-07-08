@@ -30,27 +30,26 @@ const TrailerPreview = ({
             : "pointer-events-none scale-90 translate-y-[-40%] opacity-0"
         }`}
     >
-      <div className="aspect-video bg-black">
+      <div className="relative aspect-video overflow-hidden bg-black">
         {shouldShowTrailer ? (
           <>
             <iframe
-              key={trailer.key}
-              className="h-full w-full pointer-events-none"
+              className="absolute -top-16 left-0 h-[calc(100%+10rem)] w-full pointer-events-none"
               src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&playsinline=1&controls=0&disablekb=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&showinfo=0`}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
-            <p className="absolute -mt-14 h-13 w-full bg-linear-30 from-black px-2 pt-2 text-3xl font-bold text-white">
+            <h2 className="absolute bottom-4 left-4 right-4 text-2xl font-bold text-white drop-shadow-lg">
               {title}
-            </p>
+            </h2>
           </>
         ) : (
           isActive && (
             <>
               <MoviePoster posterPath={posterPath} />
-              <p className="absolute -mt-8 h-18 w-full bg-linear-30 from-black px-2 pt-2 text-2xl font-bold text-white">
+              <h2 className="absolute bottom-4 left-4 right-4 text-2xl font-bold text-white drop-shadow-lg shadow-black-400">
                 {title}
-              </p>
+              </h2>
             </>
           )
         )}

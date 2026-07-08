@@ -18,7 +18,7 @@ const useCardTrailer = (movieId, type = "movie") => {
       const json = await data.json();
       const trailers = json.results.filter((video) => video.type === "Trailer");
       const nextTrailer = trailers[0] || null;
-      dispatch(setCardTrailer({ movieId: trailerKey, trailer: nextTrailer }));
+      dispatch(setCardTrailer({ trailerKey, trailer: nextTrailer }));
     } catch (error) {
       console.log("Error getting trailer: ", error);
     }

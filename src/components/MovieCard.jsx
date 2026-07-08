@@ -1,16 +1,17 @@
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import useCardTrailer from "../hooks/useCardTrailer";
 import MoviePoster from "./MoviePoster";
 import TrailerPreview from "./TrailerPreview";
+import useMovieTrailer from "../hooks/useMovieTrailer";
 
-const MovieCard = ({ movie, index, totalMovies, type }) => {
+const MovieCard = ({ movie, index, totalMovies }) => {
   const [showTrailer, setShowTrailer] = useState(false);
   const { poster_path: posterPath, id: movieId } = movie;
   const title = movie.title || movie.name || "Movie";
-  const trailerKey = `${type}:${movieId}`;
+  const trailerKey = `${movie.media_type}:${movieId}`;
 
   const timer = useRef(null);
+  //console.log(movie);
 
   const handleMouseEnter = () => {
     timer.current = setTimeout(() => setShowTrailer(true), 300);
@@ -20,8 +21,9 @@ const MovieCard = ({ movie, index, totalMovies, type }) => {
     clearTimeout(timer.current);
     setShowTrailer(false);
   };
+  //console.log(trailerKey);
 
-  useCardTrailer(showTrailer ? movieId : null, type);
+  useMovieTrailer(showTrailer ? movieId : null, movie.media_type);
   const trailer = useSelector((state) => state.movie.trailersById[trailerKey]);
 
   const isLoading = showTrailer && trailer === undefined;

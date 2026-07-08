@@ -13,7 +13,11 @@ const usePopularTV = () => {
 
       const json = await data.json();
       //console.log(json.results);
-      dispatch(setPopularTv(json.results));
+      const tv = json.results.map((tv) => ({
+        ...tv,
+        media_type: "tv",
+      }));
+      dispatch(setPopularTv(tv));
     } catch (error) {
       console.log("Error fetching popular TV: ", error);
     }

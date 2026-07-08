@@ -13,7 +13,11 @@ const useOnTheAir = () => {
 
       const json = await data.json();
       //console.log(json.results);
-      dispatch(setOnTheAir(json.results));
+      const tv = json.results.map((tv) => ({
+        ...tv,
+        media_type: "tv",
+      }));
+      dispatch(setOnTheAir(tv));
     } catch (error) {
       console.log("Error fetching top rated movies: ", error);
     }

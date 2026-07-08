@@ -5,7 +5,9 @@ import { setMovieTrailer } from "../store/slices/movieSlice";
 
 const useMovieTrailer = (movieId, type = "movie") => {
   const dispatch = useDispatch();
-  const trailer = useSelector((state) => state.movie.trailersById[movieId]);
+  const trailerKey = `${type}:${movieId}`;
+  const trailer = useSelector((state) => state.movie.trailersById[trailerKey]);
+  //console.log(trailerKey);
 
   const getMovieTrailer = async () => {
     try {
@@ -22,7 +24,7 @@ const useMovieTrailer = (movieId, type = "movie") => {
         json.results[0] ??
         null;
 
-      dispatch(setMovieTrailer({ movieId, trailer: nextTrailer }));
+      dispatch(setMovieTrailer({ movieId: trailerKey, trailer: nextTrailer }));
     } catch (error) {
       console.log("Error getting trailer: ", error);
     }
@@ -31,7 +33,7 @@ const useMovieTrailer = (movieId, type = "movie") => {
   useEffect(() => {
     if (!movieId || trailer !== undefined) return;
     getMovieTrailer();
-  }, [movieId, trailer]);
+  }, [movieId, trailer, type]);
 };
 
 export default useMovieTrailer;

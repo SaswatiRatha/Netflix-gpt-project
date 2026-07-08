@@ -14,7 +14,7 @@ const useSimilarShows = (movieId, type = "movie") => {
       );
 
       const json = await data.json();
-      console.log("similar shows: ", json.results);
+      //console.log("similar shows: ", json.results);
 
       dispatch(setSimilarShows(json.results));
     } catch (error) {

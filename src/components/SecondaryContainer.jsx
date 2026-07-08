@@ -3,7 +3,7 @@ import MovieList from "./MovieList";
 const SecondaryContainer = () => {
   return (
     <div className="bg-black">
-      <div className="relative z-10 -mt-10 pb-8 sm:-mt-14 md:-mt-8 lg:-mt-8">
+      <div className="relative z-10 -mt-10 pb-8 sm:-mt-14 md:-mt-28 lg:-mt-34">
         <MovieList title="New Releases" moviesKey="nowPlaying" type="movie" />
         <MovieList title="Popular" moviesKey="popularMovies" type="movie" />
         <MovieList
