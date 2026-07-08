@@ -1,9 +1,9 @@
 import { signOut } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth } from "../../utils/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { LOGO } from "../utils/constants";
-import SearchBar from "./SearchBar";
+import { LOGO } from "../../utils/constants";
+import SearchBar from "../search/SearchBar";
 import { useState } from "react";
 
 const Header = () => {

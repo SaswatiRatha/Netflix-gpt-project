@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import MoviePoster from "./MoviePoster";
 import TrailerPreview from "./TrailerPreview";
-import useMovieTrailer from "../hooks/useMovieTrailer";
+import useMovieTrailer from "../../hooks/useMovieTrailer";
 
 const MovieCard = ({ movie, index, totalMovies }) => {
   const [showTrailer, setShowTrailer] = useState(false);

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import MoviePoster from "./MoviePoster";
+import MoviePoster from "../components/media/MoviePoster";
 import { LOGIN_BG } from "../utils/constants";
 
 const MyWatchList = () => {

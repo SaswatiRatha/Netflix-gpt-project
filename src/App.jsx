@@ -1,11 +1,11 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Body from "./components/Body";
-import Login from "./components/Login";
-import Browse from "./components/Browse";
-import Error from "./components/Error";
-import SearchResults from "./components/SearchResults";
-import MyWatchList from "./components/MyWatchList";
+import Login from "./pages/Login";
+import Browse from "./pages/Browse";
+import Error from "./pages/Error";
+import SearchResults from "./components/search/SearchResults";
+import MyWatchList from "./pages/MyWatchList";
 const appRouter = createBrowserRouter([
   {
     path: "/",

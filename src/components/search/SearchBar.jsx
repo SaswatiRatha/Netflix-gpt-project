@@ -1,12 +1,12 @@
 import { useState } from "react";
-import useAiSearch from "../hooks/useAiSearch";
-import { API_OPTIONS } from "../utils/constants";
+import useAiSearch from "../../hooks/useAiSearch";
+import { API_OPTIONS } from "../../utils/constants";
 import { useDispatch } from "react-redux";
 import {
   setGptMovies,
   setSearchResults,
   setSearchText,
-} from "../store/slices/gptSlice";
+} from "../../store/slices/gptSlice";
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {

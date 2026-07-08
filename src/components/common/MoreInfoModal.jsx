@@ -1,17 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
-import VideoBackground from "./VideoBackground";
-import { addToWatchList, closeModal } from "../store/slices/movieSlice";
-import useMovieCast from "../hooks/useMovieCasts";
+import VideoBackground from "../media/VideoBackground";
+import { addToWatchList, closeModal } from "../../store/slices/movieSlice";
+import useMovieCast from "../../hooks/useMovieCasts";
 import { useState } from "react";
-import useMovieGenre from "../hooks/useMovieGenre";
-import useSimilarShows from "../hooks/useSimilarShows";
-import MoviePoster from "./MoviePoster";
+import useMovieGenre from "../../hooks/useMovieGenre";
+import useSimilarShows from "../../hooks/useSimilarShows";
+import MoviePoster from "../media/MoviePoster";
 import { createPortal } from "react-dom";
-import useLockBodyScroll from "../hooks/useLockBodyScroll";
-import useCertificate from "../hooks/useCertificate";
-import useSeriesDetails from "../hooks/useSeriesDetails";
-import EpisodeCard from "./EpisodeCard";
-import useEpisodes from "../hooks/useEpisodes";
+import useLockBodyScroll from "../../hooks/useLockBodyScroll";
+import useCertificate from "../../hooks/useCertificate";
+import useSeriesDetails from "../../hooks/useSeriesDetails";
+import EpisodeCard from "../media/EpisodeCard";
+import useEpisodes from "../../hooks/useEpisodes";
 
 const MoreInfoModal = () => {
   const [showAllCast, setShowAllCast] = useState(false);

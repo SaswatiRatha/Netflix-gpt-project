@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addToWatchList, openModal } from "../store/slices/movieSlice";
+import { addToWatchList, openModal } from "../../store/slices/movieSlice";
 import { useState } from "react";
 
 const ActionItems = ({ movie }) => {

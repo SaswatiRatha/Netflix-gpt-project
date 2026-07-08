@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import MovieCard from "./MovieCard";
-import { LOGIN_BG } from "../utils/constants";
-import MoreInfoModal from "./MoreInfoModal";
+import MovieCard from "../media/MovieCard";
+import { LOGIN_BG } from "../../utils/constants";
+import MoreInfoModal from "../common/MoreInfoModal";
 
 const SearchResults = () => {
   const searchResultMovies =

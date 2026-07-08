@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import VideoTitle from "./VideoTitle";
 import VideoBackground from "./VideoBackground";
-import MainSpinner from "./MainSpinner";
+import MainSpinner from "../MainSpinner";
 
 const MainContainer = () => {
   const movies = useSelector((state) => state.movie?.trending);

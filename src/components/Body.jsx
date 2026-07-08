@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { removeCurrentUser, setCurrentUser } from "../store/slices/userSlice";
-import Header from "./Header";
+import Header from "./common/Header";
 
 const Body = () => {
   const dispatch = useDispatch();

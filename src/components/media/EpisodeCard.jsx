@@ -1,4 +1,4 @@
-import { IMG_CDN_URL } from "../utils/constants";
+import { IMG_CDN_URL } from "../../utils/constants";
 
 const EpisodeCard = ({ number, episode }) => {
   const formatRuntime = (minutes) => {

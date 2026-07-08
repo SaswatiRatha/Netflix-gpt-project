@@ -1,4 +1,4 @@
-import ActionItems from "./ActionItems";
+import ActionItems from "../common/ActionItems";
 import MoviePoster from "./MoviePoster";
 
 const TrailerPreview = ({
@@ -34,7 +34,7 @@ const TrailerPreview = ({
         {shouldShowTrailer ? (
           <>
             <iframe
-              className="absolute inset-0 h-full w-full pointer-events-none"
+              className="absolute top-[-20%] left-0 h-[150%] inset-0 w-full pointer-events-none"
               src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&playsinline=1&controls=0&disablekb=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&showinfo=0`}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
