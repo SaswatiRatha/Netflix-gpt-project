@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useState } from "react";
 import useAiSearch from "../hooks/useAiSearch";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
@@ -10,7 +10,8 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-  const searchText = useRef(null);
+  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [searchWord, setSearchWord] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { search } = useAiSearch();
@@ -53,29 +54,59 @@ const SearchBar = () => {
     }
   };
 
-  const handleSearchClick = async () => {
-    navigate("search");
-    const tmdbSearchResult = await tmdbSearch(searchText.current.value);
+  const handleInputChange = async (e) => {
+    const value = e.target.value;
 
+    setSearchWord(value);
+    dispatch(setSearchText(value));
+
+    if (!value.trim()) {
+      dispatch(setSearchResults([]));
+      dispatch(setGptMovies([]));
+      navigate("/browse");
+      return;
+    }
+    navigate("/search");
+    const tmdbSearchResult = await tmdbSearch(value);
     dispatch(setSearchResults(normalizeMovies(tmdbSearchResult)));
-    const aiResults = await search(searchText.current.value);
 
+    const aiResults = await search(value);
     dispatch(setGptMovies(aiResults));
-
-    dispatch(setSearchText(searchText.current.value));
   };
 
   return (
-    <div className="grid grid-cols-12 gap-2">
-      <input
-        ref={searchText}
-        className="col-span-8 px-4 py-2 text-white placeholder:text-gray-500 rounded-full border border-gray-600 bg-black/50 backdrop-blur-md focus:border-white"
-        type="text"
-        placeholder="What do you want to watch?"
-      />
+    <div className="flex items-center gap-2">
+      <div className="relative">
+        <input
+          value={searchWord}
+          onChange={handleInputChange}
+          className={`
+      bg-black/80
+      text-white
+      rounded
+      border
+      border-gray-500
+      transition-all
+      duration-300
+      outline-none
+      p-2
+      ${showSearchBar ? "w-64 opacity-100" : "w-0 opacity-0 border-0 px-0"}
+    `}
+          placeholder="What do you want to watch?"
+        />
+        {showSearchBar && (
+          <button
+            onClick={() => setShowSearchBar(!showSearchBar)}
+            className="absolute right-3 top-4 -translate-y-1/2 col-span-1 items-center justify-center text-white inline-block text-2xl hover:scale-110 transition-transform duration-200 sm:col-span-1"
+          >
+            x
+          </button>
+        )}
+      </div>
+
       <button
-        onClick={handleSearchClick}
-        className="text-white inline-block rotate-280 text-3xl hover:scale-110 transition-transform duration-200"
+        onClick={() => setShowSearchBar(!showSearchBar)}
+        className="col-span-1 items-center justify-center text-white inline-block rotate-280 text-3xl hover:scale-110 transition-transform duration-200 sm:col-span-1"
       >
         ⌕
       </button>

@@ -98,7 +98,7 @@ const Login = () => {
         src={LOGIN_BG}
         alt="background-img"
       />
-      <form className="flex flex-col absolute max-w-xs p-10 my-36 mx-auto right-0 left-0 bg-black/80 text-white rounded-lg">
+      <form className="flex flex-col absolute left-1/2 top-20 z-20 w-[min(92vw,28rem)] -translate-x-1/2 rounded-lg bg-black/80 p-6 text-white shadow-xl sm:p-10">
         <h1 className="font-bold text-3xl pb-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>

@@ -22,7 +22,7 @@ const TrailerPreview = ({
   return (
     <div
       className={`absolute top-1/2 ${previewPosition}
-        w-104 max-w-[90vw] overflow-hidden rounded-3xl border border-gray-500 bg-zinc-900 shadow-[0_20px_60px_rgba(0,0,0,0.8)]
+        w-[90vw] max-w-104 overflow-hidden rounded-3xl border border-gray-500 bg-zinc-900 shadow-[0_20px_60px_rgba(0,0,0,0.8)]
         transition-all duration-300 ease-out
         ${
           isActive
@@ -34,12 +34,12 @@ const TrailerPreview = ({
         {shouldShowTrailer ? (
           <>
             <iframe
-              className="absolute -top-16 left-0 h-[calc(100%+10rem)] w-full pointer-events-none"
+              className="absolute inset-0 h-full w-full pointer-events-none"
               src={`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&playsinline=1&controls=0&disablekb=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&showinfo=0`}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
-            <h2 className="absolute bottom-4 left-4 right-4 text-2xl font-bold text-white drop-shadow-lg">
+            <h2 className="absolute bottom-4 left-4 right-4 text-xl font-bold text-white drop-shadow-lg sm:text-2xl">
               {title}
             </h2>
           </>
@@ -47,7 +47,7 @@ const TrailerPreview = ({
           isActive && (
             <>
               <MoviePoster posterPath={posterPath} />
-              <h2 className="absolute bottom-4 left-4 right-4 text-2xl font-bold text-white drop-shadow-lg shadow-black-400">
+              <h2 className="absolute bottom-4 left-4 right-4 text-xl font-bold text-white drop-shadow-lg sm:text-2xl">
                 {title}
               </h2>
             </>

@@ -51,21 +51,21 @@ const MoreInfoModal = () => {
 
   //console.log(selectedMovie);
   return createPortal(
-    <div className="fixed inset-0 z-50 bg-black/70 overflow-y-auto">
-      <div className="relative mx-auto mt-5 w-[70vw] max-w-5xl rounded-xl bg-black shadow-2xl">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/70 p-4 sm:p-6">
+      <div className="relative mx-auto mt-5 w-full max-w-[95vw] rounded-xl bg-black shadow-2xl sm:w-[70vw] sm:max-w-5xl">
         <button
           onClick={() => dispatch(closeModal())}
           className="absolute top-4 right-4 bg-gray-600 rounded-full px-4 py-2 text-white transition-all duration-300 hover:bg-gray-700"
         >
           X
         </button>
-        <div className="w-[70vw] rounded-lg overflow-hidden">
+        <div className="w-full rounded-lg overflow-hidden">
           <VideoBackground
             movieId={selectedMovie.id}
             type={selectedMovie.media_type}
           />
         </div>
-        <div className="m-4 p-4 gap-3 grid grid-cols-3">
+        <div className="m-4 p-4 gap-4 grid grid-cols-1 sm:grid-cols-3">
           <div className="col-span-2 flex flex-col gap-3">
             <h1 className="font-bold text-2xl">
               {selectedMovie.title || selectedMovie.name}
@@ -97,24 +97,28 @@ const MoreInfoModal = () => {
             </p>
           </div>
           {selectedMovie.media_type === "tv" && (
-            <div className="col-span-3 flex flex-col justify-between mt-4 ">
+            <div className="col-span-1 sm:col-span-3 mt-4">
               <h1 className="font-bold text-2xl">Episodes</h1>
               {seasons.length > 1 && (
-                <button className="px-4 py-2 border-2 border-gray-500 text-white">
+                <button className="mt-2 w-full rounded-md border-2 border-gray-500 bg-zinc-900 px-4 py-2 text-white sm:w-auto">
                   Season {seasons}{" "}
-                  <span className=" fill-white  text-white text-xs ml-2">
-                    ▼
-                  </span>
+                  <span className="fill-white text-white text-xs ml-2">▼</span>
                 </button>
               )}
-              {episodes.map((episode, index) => (
-                <EpisodeCard number={index + 1} episode={episode} />
-              ))}
+              <div className="mt-3 space-y-2">
+                {episodes.map((episode, index) => (
+                  <EpisodeCard
+                    key={episode.id || index}
+                    number={index + 1}
+                    episode={episode}
+                  />
+                ))}
+              </div>
             </div>
           )}
         </div>
         <h1 className="mx-4 px-4 font-bold text-2xl">More like this</h1>
-        <div className="mx-4 grid grid-cols-3 gap-3 py-6 sm:mx-8 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+        <div className="mx-4 grid grid-cols-1 gap-3 py-6 sm:mx-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
           {similarMovies.map((movie) => {
             const exists = watchlist.some((item) => item.id === movie.id);
             return (
@@ -136,7 +140,8 @@ const MoreInfoModal = () => {
                         HD
                       </p>
                       <p className="text-gray-300 text-md">
-                        {movie.release_date.slice(0, 4)}
+                        {movie.release_date?.slice(0, 4) ||
+                          movie.first_air_date.slice(0, 4)}
                       </p>
                     </div>
                     <div className="relative flex justify-end">

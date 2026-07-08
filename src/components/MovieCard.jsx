@@ -33,7 +33,7 @@ const MovieCard = ({ movie, index, totalMovies }) => {
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative h-60 w-40 shrink-0 cursor-pointer overflow-visible rounded-md transition-all duration-300 ${
+      className={`relative h-52 w-36 shrink-0 cursor-pointer overflow-visible rounded-md transition-all duration-300 sm:h-60 sm:w-40 ${
         isActive
           ? "z-50 scale-100 shadow-[0_0_0_2px_rgba(255,255,255,0.8),0_20px_45px_rgba(0,0,0,0.65)]"
           : "z-0"

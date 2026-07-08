@@ -17,7 +17,7 @@ const MainContainer = () => {
   return (
     <div>
       <VideoTitle movie={mainMovie} />
-      <div className="w-screen aspect-video">
+      <div className="w-full aspect-video">
         <VideoBackground movieId={mainMovie.id} type={mainMovie.media_type} />
       </div>
     </div>
