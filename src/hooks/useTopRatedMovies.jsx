@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
-import { setTopRatedMovies } from "../store/slices/movieSlice";
+import { setTopRatedMovies } from "../store/slices/mediaSlice";
 const useTopRatedMovies = () => {
   const dispatch = useDispatch();
   const getTopRatedMovies = async () => {

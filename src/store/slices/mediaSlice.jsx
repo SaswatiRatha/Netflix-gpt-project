@@ -6,10 +6,6 @@ const initialState = {
   topRatedMovies: null,
   upcomingMovies: null,
   trailersById: {},
-  selectedMovie: {},
-  isModalOpen: false,
-  movieCasts: null,
-  movieGenre: null,
   popularTv: null,
   myList: [],
   trending: null,
@@ -17,14 +13,10 @@ const initialState = {
   trendingTV: null,
   topRatedTV: null,
   onTheAir: null,
-  similarShows: null,
-  certificate: "",
-  tvDetails: null,
-  episodes: null,
 };
 
-const movieSlice = createSlice({
-  name: "movie",
+const mediaSlice = createSlice({
+  name: "media",
   initialState,
   reducers: {
     addNowPlayingMovies: (state, action) => {
@@ -50,20 +42,6 @@ const movieSlice = createSlice({
       if (trailerKey) {
         state.trailersById[trailerKey] = trailer;
       }
-    },
-    openModal: (state, action) => {
-      state.selectedMovie = action.payload;
-      state.isModalOpen = true;
-    },
-    closeModal: (state) => {
-      state.selectedMovie = null;
-      state.isModalOpen = false;
-    },
-    setMovieCasts: (state, action) => {
-      state.movieCasts = action.payload;
-    },
-    setMovieGenre: (state, action) => {
-      state.movieGenre = action.payload;
     },
     setPopularTv: (state, action) => {
       state.popularTv = action.payload;
@@ -97,18 +75,6 @@ const movieSlice = createSlice({
     setOnTheAir: (state, action) => {
       state.onTheAir = action.payload;
     },
-    setSimilarShows: (state, action) => {
-      state.similarShows = action.payload;
-    },
-    setCertificate: (state, action) => {
-      state.certificate = action.payload;
-    },
-    setTvDetails: (state, action) => {
-      state.tvDetails = action.payload;
-    },
-    setEpisodes: (state, action) => {
-      state.episodes = action.payload;
-    },
   },
 });
 
@@ -119,10 +85,6 @@ export const {
   setTopRatedMovies,
   setUpcomingMovies,
   setCardTrailer,
-  openModal,
-  closeModal,
-  setMovieCasts,
-  setMovieGenre,
   setPopularTv,
   addToWatchList,
   setTrending,
@@ -130,9 +92,5 @@ export const {
   setTrendingTV,
   setTopRatedTV,
   setOnTheAir,
-  setSimilarShows,
-  setCertificate,
-  setTvDetails,
-  setEpisodes,
-} = movieSlice.actions;
-export default movieSlice.reducer;
+} = mediaSlice.actions;
+export default mediaSlice.reducer;

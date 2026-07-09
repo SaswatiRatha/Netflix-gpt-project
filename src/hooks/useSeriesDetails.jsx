@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { setTvDetails } from "../store/slices/movieSlice";
+import { setTvDetails } from "../store/slices/modalSlice";
 
 const useSeriesDetails = (seriesId) => {
   const dispatch = useDispatch();

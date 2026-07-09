@@ -1,12 +1,12 @@
 import { useCallback, useEffect } from "react";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { setCardTrailer } from "../store/slices/movieSlice";
+import { setCardTrailer } from "../store/slices/mediaSlice";
 
 const useCardTrailer = (movieId, type = "movie") => {
   const dispatch = useDispatch();
   const trailerKey = `${type}:${movieId}`;
-  const trailer = useSelector((state) => state.movie.trailersById[trailerKey]);
+  const trailer = useSelector((state) => state.media.trailersById[trailerKey]);
 
   const getMovieTrailer = useCallback(async () => {
     try {

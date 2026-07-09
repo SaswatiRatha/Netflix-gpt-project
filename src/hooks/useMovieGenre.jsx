@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { setMovieGenre } from "../store/slices/movieSlice";
+import { setGenre } from "../store/slices/modalSlice";
 
 const useMovieGenre = (movieId, type = "movie") => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const useMovieGenre = (movieId, type = "movie") => {
       const genre = json.genres.map((item) => item.name);
 
       //console.log(genre);
-      dispatch(setMovieGenre(genre));
+      dispatch(setGenre(genre));
     } catch (error) {
       console.log("Error fetching genre: ", error);
       return [];

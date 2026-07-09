@@ -24,7 +24,7 @@ const MovieCard = ({ movie, index, totalMovies }) => {
   //console.log(trailerKey);
 
   useMovieTrailer(showTrailer ? movieId : null, movie.media_type);
-  const trailer = useSelector((state) => state.movie.trailersById[trailerKey]);
+  const trailer = useSelector((state) => state.media.trailersById[trailerKey]);
 
   const isLoading = showTrailer && trailer === undefined;
   const isActive = showTrailer && !isLoading;

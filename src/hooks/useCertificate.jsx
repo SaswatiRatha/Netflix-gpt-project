@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { setCertificate } from "../store/slices/movieSlice";
+import { setCertificate } from "../store/slices/modalSlice";
 
 const useCertificate = (movieId, type = "movie") => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
-import { setOnTheAir } from "../store/slices/movieSlice";
+import { setOnTheAir } from "../store/slices/mediaSlice";
 const useOnTheAir = () => {
   const dispatch = useDispatch();
   const getOnTheAir = async () => {

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, moviesKey, type }) => {
-  const movies = useSelector((state) => state.movie[moviesKey]);
+  const movies = useSelector((state) => state.media[moviesKey]);
 
   if (!movies?.length) return null;
 

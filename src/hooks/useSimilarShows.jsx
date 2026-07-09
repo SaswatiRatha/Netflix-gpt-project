@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { setSimilarShows } from "../store/slices/movieSlice";
+import { setSimilarShows } from "../store/slices/modalSlice";
 
 const useSimilarShows = (movieId, type = "movie") => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import MovieCard from "../media/MovieCard";
 import { LOGIN_BG } from "../../utils/constants";
-import MoreInfoModal from "../common/MoreInfoModal";
+import MoreInfoModal from "../moreinfo/MoreInfoModal";
 
 const SearchResults = () => {
   const searchResultMovies =
@@ -10,7 +10,7 @@ const SearchResults = () => {
   const searchText = useSelector((state) => state.gpt.searchText);
   console.log("searchResultMovies: ", searchResultMovies);
   console.log("aiRecommendations: ", aiRecommendations);
-  const isModalOpen = useSelector((state) => state.movie.isModalOpen);
+  const isModalOpen = useSelector((state) => state.modal.isModalOpen);
 
   const movies = Array.from(
     new Map(

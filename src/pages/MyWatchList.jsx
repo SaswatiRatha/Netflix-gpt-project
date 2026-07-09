@@ -3,7 +3,7 @@ import MoviePoster from "../components/media/MoviePoster";
 import { LOGIN_BG } from "../utils/constants";
 
 const MyWatchList = () => {
-  const myList = useSelector((state) => state.movie.myList);
+  const myList = useSelector((state) => state.media.myList);
   if (!myList) return;
   return (
     <div className="relative min-h-screen overflow-hidden bg-black">

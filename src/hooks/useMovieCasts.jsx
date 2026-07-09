@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { setMovieCasts } from "../store/slices/movieSlice";
+import { setCasts } from "../store/slices/modalSlice";
 
 const useMovieCast = (movieId, type = "movie") => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const useMovieCast = (movieId, type = "movie") => {
       );
       const castNames = cast.map((cast) => cast.name);
       //console.log(castNames);
-      dispatch(setMovieCasts(castNames));
+      dispatch(setCasts(castNames));
     } catch (error) {
       console.log("Error fetching cast: ", error);
       return [];

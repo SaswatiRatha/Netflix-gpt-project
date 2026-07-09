@@ -5,8 +5,8 @@ import useMovieTrailer from "../../hooks/useMovieTrailer";
 const VideoBackground = ({ movieId, type = "movie" }) => {
   useMovieTrailer(movieId, type);
   const trailerKey = `${type}:${movieId}`;
-  const trailer = useSelector((state) => state.movie.trailersById[trailerKey]);
-  //console.log(trailer);
+  const trailer = useSelector((state) => state.media.trailersById[trailerKey]);
+  console.log(trailerKey, trailer);
   useEffect(() => {
     console.log("VideoBackground mounted");
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useAiSearch from "../../hooks/useAiSearch";
 import { API_OPTIONS } from "../../utils/constants";
 import { useDispatch } from "react-redux";
@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 const SearchBar = () => {
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchWord, setSearchWord] = useState("");
+  const finalWord = useRef("");
+  const inputFocus = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { search } = useAiSearch();
@@ -54,12 +56,14 @@ const SearchBar = () => {
     }
   };
 
-  const handleInputChange = async (e) => {
+  const handleInputChange = (e) => {
     const value = e.target.value;
-
     setSearchWord(value);
     dispatch(setSearchText(value));
+  };
 
+  const searchMedia = async (value) => {
+    finalWord.current = value;
     if (!value.trim()) {
       dispatch(setSearchResults([]));
       dispatch(setGptMovies([]));
@@ -67,17 +71,34 @@ const SearchBar = () => {
       return;
     }
     navigate("/search");
-    const tmdbSearchResult = await tmdbSearch(value);
+    const [tmdbSearchResult, aiResults] = await Promise.all([
+      tmdbSearch(value),
+      search(value),
+    ]);
+    if (finalWord.current !== value) return;
     dispatch(setSearchResults(normalizeMovies(tmdbSearchResult)));
-
-    const aiResults = await search(value);
     dispatch(setGptMovies(aiResults));
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      searchMedia(searchWord);
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [searchWord]);
+
+  useEffect(() => {
+    if (showSearchBar) {
+      inputFocus.current?.focus();
+    }
+  }, [showSearchBar]);
 
   return (
     <div className="flex items-center gap-2">
       <div className="relative">
         <input
+          ref={inputFocus}
           value={searchWord}
           onChange={handleInputChange}
           className={`
@@ -96,7 +117,7 @@ const SearchBar = () => {
         />
         {showSearchBar && (
           <button
-            onClick={() => setShowSearchBar(!showSearchBar)}
+            onClick={() => setShowSearchBar((prev) => !prev)}
             className="absolute right-3 top-4 -translate-y-1/2 col-span-1 items-center justify-center text-white inline-block text-2xl hover:scale-110 transition-transform duration-200 sm:col-span-1"
           >
             x
@@ -105,7 +126,7 @@ const SearchBar = () => {
       </div>
 
       <button
-        onClick={() => setShowSearchBar(!showSearchBar)}
+        onClick={() => setShowSearchBar((prev) => !prev)}
         className="col-span-1 items-center justify-center text-white inline-block rotate-280 text-3xl hover:scale-110 transition-transform duration-200 sm:col-span-1"
       >
         ⌕

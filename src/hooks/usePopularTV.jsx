@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
-import { setPopularTv } from "../store/slices/movieSlice";
+import { setPopularTv } from "../store/slices/mediaSlice";
 const usePopularTV = () => {
   const dispatch = useDispatch();
   const getPopularTV = async () => {

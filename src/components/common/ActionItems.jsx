@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addToWatchList, openModal } from "../../store/slices/movieSlice";
+import { addToWatchList } from "../../store/slices/mediaSlice";
+import { openModal } from "../../store/slices/modalSlice";
 import { useState } from "react";
 
 const ActionItems = ({ movie }) => {
   const [isAddHovered, setIsAddHovered] = useState(false);
   const [isInfoHovered, setIsInfoHovered] = useState(false);
-  const watchlist = useSelector((state) => state.movie.myList);
+  const watchlist = useSelector((state) => state.media.myList);
   const exists = watchlist.find((item) => item.id === movie.id);
   const dispatch = useDispatch();
 

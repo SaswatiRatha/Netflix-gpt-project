@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { openModal } from "../../store/slices/movieSlice";
+import { openModal } from "../../store/slices/modalSlice";
 
 const VideoTitle = ({ movie }) => {
   const dispatch = useDispatch();

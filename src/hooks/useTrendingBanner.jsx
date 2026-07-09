@@ -5,7 +5,7 @@ import {
   setTrending,
   setTrendingMovie,
   setTrendingTV,
-} from "../store/slices/movieSlice";
+} from "../store/slices/mediaSlice";
 const useTrendingBanner = () => {
   const dispatch = useDispatch();
   const getTrending = async () => {
