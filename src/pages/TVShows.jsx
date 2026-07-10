@@ -8,25 +8,64 @@ import {
   setPopularTv,
   setTopRatedTV,
   setOnTheAir,
+  setGenreMediaList,
 } from "../store/slices/mediaSlice";
+import GenreDropdown from "../components/media/GenreDropdown";
+import { TV_GENRES } from "../utils/constants";
+import MediaGrid from "../components/media/MediaGrid";
 
 const TVShows = () => {
   const isModalOpen = useSelector((state) => state.modal.isModalOpen);
+  const selectedGenre = useSelector((state) => state.media.selectedGenre);
 
   useMediaList("/tv/popular?language=en-US&page=1", "tv", setPopularTv);
   useMediaList("/tv/top_rated?language=en-US&page=1", "tv", setTopRatedTV);
   useMediaList("/tv/on_the_air?language=en-US&page=4", "tv", setOnTheAir);
+  useMediaList(
+    `/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${selectedGenre.id}`,
+    "tv",
+    setGenreMediaList,
+    selectedGenre.id === 0,
+  );
   useTrendingBanner();
 
   return (
-    <div className="relative min-h-screen">
-      <MainContainer moviesKey="trendingTV" />
+    <div className="relative">
+      <MainContainer
+        moviesKey={selectedGenre.id === 0 ? "trendingTV" : "genreMediaList"}
+      />
+      <div className="absolute top-20 left-4 right-4 z-20 flex flex-col gap-3 sm:top-24 sm:left-8 sm:right-8 sm:flex-row sm:items-center ">
+        <h1 className="text-2xl font-bold text-white sm:text-3xl">TV</h1>
+        <GenreDropdown genres={TV_GENRES} />
+      </div>
       <div className="bg-black">
         <div className="relative z-10 -mt-10 pb-8 sm:-mt-14 md:-mt-28 lg:-mt-34">
-          <MovieList title="Top Rated TV" moviesKey="topRatedTV" type="tv" />
-          <MovieList title="Popular TV Shows" moviesKey="popularTv" type="tv" />
-          <MovieList title="Top 10 TV Today" moviesKey="trendingTV" type="tv" />
-          <MovieList title="On The Air" moviesKey="onTheAir" type="tv" />
+          {selectedGenre.id === 0 ? (
+            <>
+              <MovieList
+                title="Top Rated TV"
+                moviesKey="topRatedTV"
+                type="tv"
+              />
+              <MovieList
+                title="Popular TV Shows"
+                moviesKey="popularTv"
+                type="tv"
+              />
+              <MovieList
+                title="Top 10 TV Today"
+                moviesKey="trendingTV"
+                type="tv"
+              />
+              <MovieList title="On The Air" moviesKey="onTheAir" type="tv" />
+            </>
+          ) : (
+            <MediaGrid
+              title={selectedGenre.name}
+              moviesKey="genreMediaList"
+              type="tv"
+            />
+          )}
         </div>
       </div>
       {isModalOpen && <MoreInfoModal />}

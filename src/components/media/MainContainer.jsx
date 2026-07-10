@@ -12,13 +12,17 @@ const MainContainer = ({ moviesKey = "trending" }) => {
   }
   //console.log(movies);
   const mainMovie = movies[0];
-  //console.log(mainMovie);
+  console.log(mainMovie);
 
   return (
     <div>
       <VideoTitle movie={mainMovie} />
       <div className="w-full aspect-video">
-        <VideoBackground movieId={mainMovie.id} type={mainMovie.media_type} />
+        <VideoBackground
+          movieId={mainMovie.id}
+          type={mainMovie.media_type}
+          backdrop={mainMovie.backdrop_path}
+        />
       </div>
     </div>
   );
