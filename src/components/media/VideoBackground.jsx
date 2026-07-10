@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 import useMovieTrailer from "../../hooks/useMovieTrailer";
 
 const VideoBackground = ({ movieId, type = "movie" }) => {
@@ -7,13 +6,7 @@ const VideoBackground = ({ movieId, type = "movie" }) => {
   const trailerKey = `${type}:${movieId}`;
   const trailer = useSelector((state) => state.media.trailersById[trailerKey]);
   console.log(trailerKey, trailer);
-  useEffect(() => {
-    console.log("VideoBackground mounted");
 
-    return () => {
-      console.log("VideoBackground unmounted");
-    };
-  }, []);
   if (!trailer) {
     return <div className="aspect-video w-full bg-black animate-pulse" />;
   }

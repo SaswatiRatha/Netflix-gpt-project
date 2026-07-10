@@ -6,6 +6,8 @@ import Browse from "./pages/Browse";
 import Error from "./pages/Error";
 import SearchResults from "./components/search/SearchResults";
 import MyWatchList from "./pages/MyWatchList";
+import Movies from "./pages/Movies";
+import TVShows from "./pages/TVShows";
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -19,6 +21,14 @@ const appRouter = createBrowserRouter([
       {
         path: "browse",
         element: <Browse />,
+      },
+      {
+        path: "movies",
+        element: <Movies />,
+      },
+      {
+        path: "tv",
+        element: <TVShows />,
       },
       {
         path: "search",

@@ -3,8 +3,8 @@ import VideoTitle from "./VideoTitle";
 import VideoBackground from "./VideoBackground";
 import MainSpinner from "../MainSpinner";
 
-const MainContainer = () => {
-  const movies = useSelector((state) => state.media?.trending);
+const MainContainer = ({ moviesKey = "trending" }) => {
+  const movies = useSelector((state) => state.media?.[moviesKey]);
 
   //if (!movies) return;
   if (!movies || movies.length === 0) {

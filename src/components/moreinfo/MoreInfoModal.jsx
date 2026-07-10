@@ -1,18 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import VideoBackground from "../media/VideoBackground";
 import { closeModal } from "../../store/slices/modalSlice";
-import useMovieCast from "../../hooks/useMovieCasts";
-import useMovieGenre from "../../hooks/useMovieGenre";
-import useSimilarShows from "../../hooks/useSimilarShows";
 import { createPortal } from "react-dom";
 import useLockBodyScroll from "../../hooks/useLockBodyScroll";
-import useCertificate from "../../hooks/useCertificate";
-import useSeriesDetails from "../../hooks/useSeriesDetails";
 import EpisodeCard from "./EpisodeCard";
 import useEpisodes from "../../hooks/useEpisodes";
 import SeasonDropdown from "./SeasonDropdown";
 import MediaDetails from "./MediaDetails";
 import SimilarMediaCards from "./SimilarMediaCards";
+import useMediaDetails from "../../hooks/useMediaDetails";
 
 const MoreInfoModal = () => {
   const {
@@ -27,11 +23,7 @@ const MoreInfoModal = () => {
 
   const dispatch = useDispatch();
   useLockBodyScroll();
-  useMovieCast(selectedMedia.id, selectedMedia.media_type);
-  useMovieGenre(selectedMedia.id, selectedMedia.media_type);
-  useSimilarShows(selectedMedia.id, selectedMedia.media_type);
-  useCertificate(selectedMedia.id, selectedMedia.media_type);
-  useSeriesDetails(selectedMedia.id, selectedMedia.media_type);
+  useMediaDetails(selectedMedia.id, selectedMedia.media_type);
   useEpisodes(selectedMedia.id, selectedMedia.media_type);
 
   if (!similarShows || !selectedMedia) return;

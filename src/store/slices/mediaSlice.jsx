@@ -13,6 +13,8 @@ const initialState = {
   trendingTV: null,
   topRatedTV: null,
   onTheAir: null,
+  selectedGenre: { id: 0, name: "Genre" },
+  genreMediaList: null,
 };
 
 const mediaSlice = createSlice({
@@ -64,7 +66,7 @@ const mediaSlice = createSlice({
       state.trending = action.payload;
     },
     setTrendingMovie: (state, action) => {
-      state.trendingMovie = action.payload;
+      state.trendingMovies = action.payload;
     },
     setTrendingTV: (state, action) => {
       state.trendingTV = action.payload;
@@ -74,6 +76,12 @@ const mediaSlice = createSlice({
     },
     setOnTheAir: (state, action) => {
       state.onTheAir = action.payload;
+    },
+    setSelectedGenre: (state, action) => {
+      state.selectedGenre = action.payload;
+    },
+    setGenreMediaList: (state, action) => {
+      state.genreMediaList = action.payload;
     },
   },
 });
@@ -92,5 +100,7 @@ export const {
   setTrendingTV,
   setTopRatedTV,
   setOnTheAir,
+  setSelectedGenre,
+  setGenreMediaList,
 } = mediaSlice.actions;
 export default mediaSlice.reducer;

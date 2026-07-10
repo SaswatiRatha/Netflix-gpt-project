@@ -45,6 +45,15 @@ const modalSlice = createSlice({
     setEpisodes: (state, action) => {
       state.episodes = action.payload;
     },
+    setMediaDetails: (state, action) => {
+      const { casts, genre, similarShows, certificate, seasons } =
+        action.payload;
+      state.casts = casts;
+      state.genre = genre;
+      state.similarShows = similarShows;
+      state.certificate = certificate;
+      if (seasons !== undefined) state.seasons = seasons;
+    },
   },
 });
 
@@ -58,5 +67,6 @@ export const {
   setTvDetails,
   setEpisodes,
   setSelectedSeason,
+  setMediaDetails,
 } = modalSlice.actions;
 export default modalSlice.reducer;

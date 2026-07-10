@@ -7,7 +7,7 @@ const VideoTitle = ({ movie }) => {
     <div className="absolute inset-x-0 top-0 aspect-video w-screen bg-linear-to-r from-black px-2 pt-[16%] text-white sm:px-8 md:px-12 lg:px-24">
       <div className="max-w-[90vw] sm:max-w-[70vw] lg:max-w-[45vw]">
         <h1 className="text-lg font-bold leading-tight sm:text-3xl md:text-4xl lg:text-5xl">
-          {movie.title}
+          {movie.title || movie.name}
         </h1>
         <p className="max-w-full py-2 text-[10px] leading-snug sm:py-4 sm:text-sm md:text-base lg:text-lg">
           {movie.overview}

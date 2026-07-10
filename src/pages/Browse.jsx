@@ -1,26 +1,45 @@
 import { useSelector } from "react-redux";
-import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
-import usePopularMovies from "../hooks/usePopularMovies";
-import useTopRatedMovies from "../hooks/useTopRatedMovies";
-import useUpcomingMovies from "../hooks/useUpcomingMovies";
+import useMediaList from "../hooks/useMediaList";
+import {
+  addNowPlayingMovies,
+  setOnTheAir,
+  setPopularMovies,
+  setPopularTv,
+  setTopRatedMovies,
+  setTopRatedTV,
+  setUpcomingMovies,
+} from "../store/slices/mediaSlice";
+
 import MainContainer from "../components/media/MainContainer";
 import SecondaryContainer from "../components/media/SecondaryContainer";
 import MoreInfoModal from "../components/moreinfo/MoreInfoModal";
-import usePopularTV from "../hooks/usePopularTV";
+
 import useTrendingBanner from "../hooks/useTrendingBanner";
-import useTopRatedTv from "../hooks/useTopRatedTv";
-import useOnTheAir from "../hooks/useOnTheAir";
 
 const Browse = () => {
   const isModalOpen = useSelector((state) => state.modal.isModalOpen);
-  useNowPlayingMovies();
-  usePopularMovies();
-  useTopRatedMovies();
-  useUpcomingMovies();
-  usePopularTV();
+  useMediaList("/movie/now_playing?page=1", "movie", addNowPlayingMovies);
+  useMediaList(
+    "/movie/popular?language=en-US&page=3",
+    "movie",
+    setPopularMovies,
+  );
+  useMediaList(
+    "/movie/top_rated?language=en-US&page=1",
+    "movie",
+    setTopRatedMovies,
+  );
+  useMediaList(
+    "/movie/upcoming?language=en-US&page=4",
+    "movie",
+    setUpcomingMovies,
+  );
+  useMediaList("/tv/popular?language=en-US&page=1", "tv", setPopularTv);
+  useMediaList("/tv/top_rated?language=en-US&page=1", "tv", setTopRatedTV);
+  useMediaList("/tv/on_the_air?language=en-US&page=4", "tv", setOnTheAir);
+
   useTrendingBanner();
-  useTopRatedTv();
-  useOnTheAir();
+
   return (
     <div className="relative min-h-screen">
       <MainContainer />
