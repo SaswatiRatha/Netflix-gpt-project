@@ -6,7 +6,7 @@ const VideoBackground = ({ movieId, type = "movie", backdrop }) => {
   useMovieTrailer(movieId, type);
   const trailerKey = `${type}:${movieId}`;
   const trailer = useSelector((state) => state.media.trailersById[trailerKey]);
-  console.log(trailerKey, trailer);
+  //console.log(trailerKey, trailer);
 
   if (trailer === undefined) {
     return <div className="aspect-video w-full bg-black animate-pulse" />;

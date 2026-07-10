@@ -1,9 +1,8 @@
+import { IMG_CDN_URL } from "../../utils/constants";
 import ActionItems from "../common/ActionItems";
-import MoviePoster from "./MoviePoster";
 
 const TrailerPreview = ({
   title,
-  posterPath,
   trailer,
   isActive,
   index,
@@ -46,7 +45,11 @@ const TrailerPreview = ({
         ) : (
           isActive && (
             <>
-              <MoviePoster posterPath={posterPath} />
+              <img
+                className="aspect-video w-full object-cover"
+                src={IMG_CDN_URL + movie.backdrop_path}
+                alt=""
+              />
               <h2 className="absolute bottom-4 left-4 right-4 text-xl font-bold text-white drop-shadow-lg sm:text-2xl">
                 {title}
               </h2>

@@ -12,7 +12,7 @@ const MainContainer = ({ moviesKey = "trending" }) => {
   }
   //console.log(movies);
   const mainMovie = movies[0];
-  console.log(mainMovie);
+  //console.log(mainMovie);
 
   return (
     <div>
