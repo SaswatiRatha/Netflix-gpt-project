@@ -11,17 +11,14 @@ import MainContainer from "../components/media/MainContainer";
 import MoreInfoModal from "../components/moreinfo/MoreInfoModal";
 import MovieList from "../components/media/MovieList";
 import GenreDropdown from "../components/media/GenreDropdown";
-import { MOVIE_GENRE } from "../utils/constants";
+import { MOVIE_GENRES } from "../utils/constants";
+import MediaGrid from "../components/media/MediaGrid";
 
 const Movies = () => {
   const isModalOpen = useSelector((state) => state.modal.isModalOpen);
   const selectedGenre = useSelector((state) => state.media.selectedGenre);
-  useMediaList("/movie/now_playing?page=1", "movie", addNowPlayingMovies);
-  useMediaList(
-    "/movie/popular?language=en-US&page=3",
-    "movie",
-    setPopularMovies,
-  );
+  useMediaList("/movie/now_playing?", "movie", addNowPlayingMovies);
+  useMediaList("/movie/popular?language=en-US", "movie", setPopularMovies);
   useMediaList(
     "/movie/top_rated?language=en-US&page=1",
     "movie",
@@ -41,10 +38,12 @@ const Movies = () => {
 
   return (
     <div className="relative min-h-screen">
-      <MainContainer moviesKey="trendingMovies" />
+      <MainContainer
+        moviesKey={selectedGenre.id === 0 ? "trendingMovies" : "genreMediaList"}
+      />
       <div className="absolute top-20 left-4 right-4 z-20 flex flex-col gap-3 sm:top-24 sm:left-8 sm:right-8 sm:flex-row sm:items-center ">
         <h1 className="text-2xl font-bold text-white sm:text-3xl">Movies</h1>
-        <GenreDropdown genres={MOVIE_GENRE} />
+        <GenreDropdown genres={MOVIE_GENRES} />
       </div>
       <div className="bg-black">
         <div className="relative z-10 -mt-10 pb-8 sm:-mt-14 md:-mt-28 lg:-mt-34">
@@ -77,7 +76,7 @@ const Movies = () => {
               />
             </>
           ) : (
-            <MovieList
+            <MediaGrid
               title={selectedGenre.name}
               moviesKey="genreMediaList"
               type="movie"

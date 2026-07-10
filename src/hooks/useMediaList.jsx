@@ -4,7 +4,6 @@ import { API_OPTIONS } from "../utils/constants";
 
 const useMediaList = (endpoint, mediaType, actionCreator, skip = false) => {
   const dispatch = useDispatch();
-  console.log(JSON.stringify(actionCreator));
 
   useEffect(() => {
     if (!endpoint || skip) return;
@@ -14,6 +13,10 @@ const useMediaList = (endpoint, mediaType, actionCreator, skip = false) => {
           `https://api.themoviedb.org/3${endpoint}`,
           API_OPTIONS,
         );
+        if (!res.ok) {
+          console.error(`TMDB request failed (${res.status}) for ${endpoint}`);
+          return;
+        }
         const json = await res.json();
         const items = json.results.map((item) => ({
           ...item,

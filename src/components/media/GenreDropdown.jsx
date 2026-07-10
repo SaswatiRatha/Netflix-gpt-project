@@ -6,7 +6,7 @@ const GenreDropdown = ({ genres }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { selectedGenre } = useSelector((state) => state.media);
   const dispatch = useDispatch();
-  console.log(genres);
+  //console.log(genres);
 
   return (
     <div className="relative flex flex-col">
@@ -19,6 +19,15 @@ const GenreDropdown = ({ genres }) => {
       </button>
       {isOpen && (
         <div className="absolute flex flex-col top-full left-0  mt-1 w-max rounded-md border border-gray-600 bg-zinc-900 shadow-lg z-50">
+          <button
+            onClick={() => {
+              dispatch(setSelectedGenre({ id: 0, name: "Genre" }));
+              setIsOpen(false);
+            }}
+            className="w-full px-4 py-2 text-center text-white hover:bg-gray-700"
+          >
+            Genre
+          </button>
           {genres.map((genre) => (
             <button
               key={genre.id}

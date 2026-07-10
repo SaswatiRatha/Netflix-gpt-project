@@ -8,14 +8,13 @@ export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMmI5YThmMWQ2N2U1MDc0MDFjOWEzMzU2NDYzZTRlMCIsIm5iZiI6MTc4MjkxMTAyNC41MjYsInN1YiI6IjZhNDUxMDMwMzQyNTkyYWJiMWVlNmM5YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9USz2WFzyX1srFwvvpdq4UQEUtAWymhHFETVCEtzCpw",
+    Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
   },
 };
 
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w780";
 
-export const MOVIE_GENRE = [
+export const MOVIE_GENRES = [
   {
     id: 28,
     name: "Action",
