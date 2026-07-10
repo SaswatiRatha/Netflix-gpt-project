@@ -7,8 +7,6 @@ const GenreDropdown = ({ genres }) => {
   const selectedGenre = useSelector((state) => state.media.selectedGenre);
   const dispatch = useDispatch();
   //console.log(genres);
-  const genreLength = genres.length;
-  console.log(genreLength);
 
   return (
     <div className="relative flex flex-col">

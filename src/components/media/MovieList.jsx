@@ -10,6 +10,8 @@ const MovieList = ({ title, moviesKey, type }) => {
 
   if (!movies?.length) return null;
 
+  const filteredMovies = movies.filter((movie) => movie.poster_path !== null);
+
   const scrollLeft = () => {
     sliderRef.current.scrollBy({
       left: -800,
@@ -40,19 +42,15 @@ const MovieList = ({ title, moviesKey, type }) => {
           ref={sliderRef}
           className="flex gap-3 overflow-x-auto overflow-y-hidden scrollbar-none"
         >
-          {movies.map((movie, index) =>
-            movie.poster_path ? (
-              <MovieCard
-                key={movie.id}
-                movie={movie}
-                index={index}
-                totalMovies={movies.length}
-                type={type}
-              />
-            ) : (
-              ""
-            ),
-          )}
+          {filteredMovies.map((movie, index) => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              index={index}
+              totalMovies={filteredMovies.length}
+              type={type}
+            />
+          ))}
         </div>
         <button
           onClick={scrollRight}
