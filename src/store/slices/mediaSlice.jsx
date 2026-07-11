@@ -15,8 +15,9 @@ const initialState = {
   onTheAir: null,
   selectedGenre: { id: 0, name: "Genre" },
   genreMediaList: null,
-  selectedLanguage: { id: 0, name: "Select Language" },
-  languageMediaList: null,
+  selectedLanguage: { id: "en", name: "English" },
+  languageMovieList: null,
+  languageTVList: null,
 };
 
 const mediaSlice = createSlice({
@@ -88,8 +89,11 @@ const mediaSlice = createSlice({
     setSelectedLanguage: (state, action) => {
       state.selectedLanguage = action.payload;
     },
-    setLanguageMediaList: (state, action) => {
-      state.languageMediaList = action.payload;
+    setLanguageMovieList: (state, action) => {
+      state.languageMovieList = action.payload;
+    },
+    setLanguageTVList: (state, action) => {
+      state.languageTVList = action.payload;
     },
   },
 });
@@ -111,6 +115,7 @@ export const {
   setSelectedGenre,
   setGenreMediaList,
   setSelectedLanguage,
-  setLanguageMediaList,
+  setLanguageMovieList,
+  setLanguageTVList,
 } = mediaSlice.actions;
 export default mediaSlice.reducer;

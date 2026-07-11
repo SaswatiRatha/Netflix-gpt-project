@@ -10,7 +10,7 @@ import {
 import MainContainer from "../components/media/MainContainer";
 import MoreInfoModal from "../components/moreinfo/MoreInfoModal";
 import MovieList from "../components/media/MovieList";
-import GenreDropdown from "../components/media/GenreDropdown";
+import Dropdown from "../components/media/Dropdown";
 import { MOVIE_GENRES } from "../utils/constants";
 import MediaGrid from "../components/media/MediaGrid";
 
@@ -41,9 +41,9 @@ const Movies = () => {
       <MainContainer
         moviesKey={selectedGenre.id === 0 ? "trendingMovies" : "genreMediaList"}
       />
-      <div className="absolute top-20 left-4 right-4 z-20 flex flex-col gap-3 sm:top-24 sm:left-8 sm:right-8 sm:flex-row sm:items-center ">
+      <div className="fixed top-16 left-0 right-0 z-30 flex items-center gap-4 px-4 py-4 sm:px-8 bg-black/90 backdrop-blur-md">
         <h1 className="text-2xl font-bold text-white sm:text-3xl">Movies</h1>
-        <GenreDropdown value={MOVIE_GENRES} />
+        <Dropdown value={MOVIE_GENRES} type="genre" />
       </div>
       <div className="bg-black">
         <div className="relative z-10 -mt-10 pb-8 sm:-mt-14 md:-mt-28 lg:-mt-34">
@@ -76,11 +76,7 @@ const Movies = () => {
               />
             </>
           ) : (
-            <MediaGrid
-              title={selectedGenre.name}
-              moviesKey="genreMediaList"
-              type="movie"
-            />
+            <MediaGrid title={selectedGenre.name} moviesKey="genreMediaList" />
           )}
         </div>
       </div>

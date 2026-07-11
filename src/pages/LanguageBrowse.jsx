@@ -1,21 +1,47 @@
 import { useSelector } from "react-redux";
 import useMediaList from "../hooks/useMediaList";
-import MoviePoster from "../components/media/MoviePoster";
-import GenreDropdown from "../components/media/GenreDropdown";
+import Dropdown from "../components/media/Dropdown";
 import { LANGUAGES, LOGIN_BG } from "../utils/constants";
+import {
+  setLanguageMovieList,
+  setLanguageTVList,
+} from "../store/slices/mediaSlice";
+import MediaGrid from "../components/media/MediaGrid";
+import { useMemo } from "react";
 
 const LanguageBrowse = () => {
   const selectedLanguage = useSelector((state) => state.media.selectedLanguage);
-  const languageMediaList = useSelector(
-    (state) => state.media.languageMediaList,
+  const languageMovieList = useSelector(
+    (state) => state.media.languageMovieList,
+  );
+  const languageTVList = useSelector((state) => state.media.languageTVList);
+  useMediaList(
+    `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_original_language=${selectedLanguage.id}`,
+    "movie",
+    setLanguageMovieList,
   );
   useMediaList(
-    `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_original_language=en`,
+    `/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_original_language=${selectedLanguage.id}`,
+    "tv",
+    setLanguageTVList,
   );
-  useMediaList(
-    `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_original_language=en`,
+  const mediaList = useMemo(() => {
+    const movies = languageMovieList || [];
+    const tv = languageTVList || [];
+    return [...movies, ...tv].sort(
+      (a, b) => (b.popularity || 0) - (a.popularity || 0),
+    );
+  }, [languageMovieList, languageTVList]);
+
+  const filteredMediaList = mediaList.filter(
+    (media) => media.poster_path !== null,
   );
-  if (selectedLanguage.id === 0 || !languageMediaList) return;
+
+  if (selectedLanguage.id === 0 || !languageMovieList || !languageTVList)
+    return;
+
+  //const mediaList = [...languageMovieList, ...languageTVList];
+  //console.log(mediaList);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-black">
@@ -25,20 +51,22 @@ const LanguageBrowse = () => {
         alt="background-img"
       />
       <div className="fixed inset-0 z-10 bg-black/80" />
-      <h1 className="relative z-30 mx-4 pt-20 text-2xl font-bold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] sm:mx-8 sm:text-3xl">
-        Browse by Language
-      </h1>
-      <GenreDropdown value={LANGUAGES} />
 
-      <div className="relative z-20 mx-4 grid grid-cols-1 gap-3 py-6 sm:mx-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {languageMediaList.map((movie) => (
-          <div
-            key={movie.id}
-            className="h-60 w-full max-w-40 transition-transform duration-200 hover:scale-105"
-          >
-            <MoviePoster posterPath={movie.poster_path} />
-          </div>
-        ))}
+      <div className="fixed top-16 left-0 right-0 z-30 flex items-center justify-between px-4 py-4 sm:px-8 bg-black/90 backdrop-blur-md">
+        <h1 className="text-2xl font-bold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] sm:text-3xl">
+          Browse by Language
+        </h1>
+
+        <div className="flex items-center gap-2">
+          <p className="text-white">Select Language:</p>
+          <Dropdown value={LANGUAGES} type="language" />
+        </div>
+      </div>
+
+      <div className="bg-black">
+        <div className="relative z-10  pb-8 pt-70 sm:-mt-14 md:-mt-28 lg:-mt-34">
+          <MediaGrid title="" movies={filteredMediaList} />
+        </div>
       </div>
     </div>
   );

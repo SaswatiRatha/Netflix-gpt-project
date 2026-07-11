@@ -8,7 +8,7 @@ const Header = () => {
   //console.log(user);
 
   return (
-    <header className="fixed left-0 top-0 z-50 flex w-full items-center justify-between bg-linear-to-b from-black via-black/90 to-transparent px-4 py-4 backdrop-blur-md shadow-lg sm:px-8">
+    <header className="fixed left-0 top-0 z-50 flex w-full items-center justify-between bg-black/90 px-4 py-4  shadow-lg sm:px-8">
       <Navbar />
 
       {user && (

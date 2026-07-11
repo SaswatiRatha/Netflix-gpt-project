@@ -8,7 +8,7 @@ const SecondaryContainer = () => {
         <MovieList title="Popular" moviesKey="popularMovies" type="movie" />
         <MovieList
           title="Top 10 in Movies Today"
-          moviesKey="trendingMovie"
+          moviesKey="trendingMovies"
           type="movie"
         />
         <MovieList

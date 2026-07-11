@@ -10,7 +10,7 @@ import {
   setOnTheAir,
   setGenreMediaList,
 } from "../store/slices/mediaSlice";
-import GenreDropdown from "../components/media/GenreDropdown";
+import Dropdown from "../components/media/Dropdown";
 import { TV_GENRES } from "../utils/constants";
 import MediaGrid from "../components/media/MediaGrid";
 
@@ -34,9 +34,9 @@ const TVShows = () => {
       <MainContainer
         moviesKey={selectedGenre.id === 0 ? "trendingTV" : "genreMediaList"}
       />
-      <div className="absolute top-20 left-4 right-4 z-20 flex flex-col gap-3 sm:top-24 sm:left-8 sm:right-8 sm:flex-row sm:items-center ">
+      <div className="fixed top-16 left-0 right-0 z-30 flex items-center gap-4 px-4 py-4 sm:px-8 bg-black/90 backdrop-blur-md">
         <h1 className="text-2xl font-bold text-white sm:text-3xl">TV</h1>
-        <GenreDropdown value={TV_GENRES} />
+        <Dropdown value={TV_GENRES} type="genre" />
       </div>
       <div className="bg-black">
         <div className="relative z-10 -mt-10 pb-8 sm:-mt-14 md:-mt-28 lg:-mt-34">
@@ -60,11 +60,7 @@ const TVShows = () => {
               <MovieList title="On The Air" moviesKey="onTheAir" type="tv" />
             </>
           ) : (
-            <MediaGrid
-              title={selectedGenre.name}
-              moviesKey="genreMediaList"
-              type="tv"
-            />
+            <MediaGrid title={selectedGenre.name} moviesKey="genreMediaList" />
           )}
         </div>
       </div>
