@@ -1,13 +1,14 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useMediaList from "../hooks/useMediaList";
 import Dropdown from "../components/media/Dropdown";
 import { LANGUAGES, LOGIN_BG } from "../utils/constants";
 import {
   setLanguageMovieList,
   setLanguageTVList,
+  setSelectedLanguage,
 } from "../store/slices/mediaSlice";
 import MediaGrid from "../components/media/MediaGrid";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 const LanguageBrowse = () => {
   const selectedLanguage = useSelector((state) => state.media.selectedLanguage);
@@ -15,6 +16,11 @@ const LanguageBrowse = () => {
     (state) => state.media.languageMovieList,
   );
   const languageTVList = useSelector((state) => state.media.languageTVList);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setSelectedLanguage({ id: "en", name: "English" }));
+  }, [dispatch]);
   useMediaList(
     `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_original_language=${selectedLanguage.id}`,
     "movie",

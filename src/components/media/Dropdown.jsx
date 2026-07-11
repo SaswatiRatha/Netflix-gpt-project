@@ -22,7 +22,9 @@ const Dropdown = ({ value, type }) => {
         <span className="fill-white text-white text-xs ml-2">▼</span>
       </button>
       {isOpen && (
-        <div className="absolute grid grid-rows-9 grid-flow-col top-full left-0 mt-1 w-max rounded-md border border-gray-600 bg-zinc-900 shadow-lg z-50">
+        <div
+          className={`absolute grid grid-rows-9 grid-flow-col top-full ${type === "genre" ? `left-0` : `right-0`} mt-1 w-max rounded-md border border-gray-600 bg-zinc-900 shadow-lg z-50`}
+        >
           {type === "genre" && (
             <button
               onClick={() => {

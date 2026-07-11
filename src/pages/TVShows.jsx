@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useMediaList from "../hooks/useMediaList";
 import useTrendingBanner from "../hooks/useTrendingBanner";
 import MainContainer from "../components/media/MainContainer";
@@ -9,14 +9,20 @@ import {
   setTopRatedTV,
   setOnTheAir,
   setGenreMediaList,
+  setSelectedGenre,
 } from "../store/slices/mediaSlice";
 import Dropdown from "../components/media/Dropdown";
 import { TV_GENRES } from "../utils/constants";
 import MediaGrid from "../components/media/MediaGrid";
+import { useEffect } from "react";
 
 const TVShows = () => {
   const isModalOpen = useSelector((state) => state.modal.isModalOpen);
   const selectedGenre = useSelector((state) => state.media.selectedGenre);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setSelectedGenre({ id: 0, name: "Genre" }));
+  }, [dispatch]);
 
   useMediaList("/tv/popular?language=en-US&page=1", "tv", setPopularTv);
   useMediaList("/tv/top_rated?language=en-US&page=1", "tv", setTopRatedTV);

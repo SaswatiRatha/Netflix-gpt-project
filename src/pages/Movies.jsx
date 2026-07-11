@@ -1,9 +1,10 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useMediaList from "../hooks/useMediaList";
 import {
   addNowPlayingMovies,
   setGenreMediaList,
   setPopularMovies,
+  setSelectedGenre,
   setTopRatedMovies,
   setUpcomingMovies,
 } from "../store/slices/mediaSlice";
@@ -13,10 +14,16 @@ import MovieList from "../components/media/MovieList";
 import Dropdown from "../components/media/Dropdown";
 import { MOVIE_GENRES } from "../utils/constants";
 import MediaGrid from "../components/media/MediaGrid";
+import { useEffect } from "react";
 
 const Movies = () => {
   const isModalOpen = useSelector((state) => state.modal.isModalOpen);
   const selectedGenre = useSelector((state) => state.media.selectedGenre);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setSelectedGenre({ id: 0, name: "Genre" }));
+  }, [dispatch]);
   useMediaList("/movie/now_playing?", "movie", addNowPlayingMovies);
   useMediaList("/movie/popular?language=en-US", "movie", setPopularMovies);
   useMediaList(
