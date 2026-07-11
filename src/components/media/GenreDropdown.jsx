@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedGenre } from "../../store/slices/mediaSlice";
 
-const GenreDropdown = ({ genres }) => {
+const GenreDropdown = ({ value }) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectedGenre = useSelector((state) => state.media.selectedGenre);
   const dispatch = useDispatch();
@@ -28,16 +28,16 @@ const GenreDropdown = ({ genres }) => {
           >
             Genre
           </button>
-          {genres.map((genre) => (
+          {value.map((item) => (
             <button
-              key={genre.id}
+              key={item.id}
               onClick={() => {
-                dispatch(setSelectedGenre(genre));
+                dispatch(setSelectedGenre(item));
                 setIsOpen(false);
               }}
               className=" w-full px-4 py-2 text-center text-white hover:bg-gray-700 text-sm"
             >
-              {genre.name}
+              {item.name}
             </button>
           ))}
         </div>

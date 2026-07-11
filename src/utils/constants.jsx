@@ -159,3 +159,111 @@ export const TV_GENRES = [
     name: "Western",
   },
 ];
+
+export const LANGUAGES = [
+  {
+    id: "en",
+    name: "English",
+  },
+  {
+    id: "de",
+    name: "German",
+  },
+
+  {
+    id: "it",
+    name: "Italian",
+  },
+
+  {
+    id: "kn",
+    name: "Kannada",
+  },
+
+  {
+    id: "ru",
+    name: "Russian",
+  },
+
+  {
+    id: "sv",
+    name: "Swedish",
+  },
+
+  {
+    id: "fr",
+    name: "French",
+  },
+
+  {
+    id: "id",
+    name: "Indonesian",
+  },
+
+  {
+    id: "gu",
+    name: "Gujarati",
+  },
+
+  {
+    id: "ja",
+    name: "Japanese",
+  },
+  {
+    id: "ko",
+    name: "Korean",
+  },
+
+  {
+    id: "bn",
+    name: "Bengali",
+  },
+
+  {
+    id: "or",
+    name: "Oriya",
+  },
+
+  {
+    id: "pa",
+    name: "Punjabi",
+  },
+  {
+    id: "as",
+    name: "Assamese",
+  },
+
+  {
+    id: "mr",
+    name: "Marathi",
+  },
+  {
+    id: "mn",
+    name: "Mongolian",
+  },
+
+  {
+    id: "hi",
+    name: "Hindi",
+  },
+
+  {
+    id: "te",
+    name: "Telugu",
+  },
+
+  {
+    id: "ml",
+    name: "Malayalam",
+  },
+
+  {
+    id: "es",
+    name: "Spanish",
+  },
+
+  {
+    id: "ta",
+    name: "Tamil",
+  },
+];

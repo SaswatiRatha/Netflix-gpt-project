@@ -8,6 +8,7 @@ import SearchResults from "./components/search/SearchResults";
 import MyWatchList from "./pages/MyWatchList";
 import Movies from "./pages/Movies";
 import TVShows from "./pages/TVShows";
+import LanguageBrowse from "./pages/LanguageBrowse";
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +38,10 @@ const appRouter = createBrowserRouter([
       {
         path: "watchlist",
         element: <MyWatchList />,
+      },
+      {
+        path: "language",
+        element: <LanguageBrowse />,
       },
     ],
   },

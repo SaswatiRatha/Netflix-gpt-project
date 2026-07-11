@@ -36,7 +36,7 @@ const TVShows = () => {
       />
       <div className="absolute top-20 left-4 right-4 z-20 flex flex-col gap-3 sm:top-24 sm:left-8 sm:right-8 sm:flex-row sm:items-center ">
         <h1 className="text-2xl font-bold text-white sm:text-3xl">TV</h1>
-        <GenreDropdown genres={TV_GENRES} />
+        <GenreDropdown value={TV_GENRES} />
       </div>
       <div className="bg-black">
         <div className="relative z-10 -mt-10 pb-8 sm:-mt-14 md:-mt-28 lg:-mt-34">

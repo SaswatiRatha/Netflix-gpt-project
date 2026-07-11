@@ -27,7 +27,7 @@ const useTrendingBanner = () => {
       dispatch(setTrendingTV(tv));
       //console.log(tv);
     } catch (error) {
-      console.log("Error fetching trendoing today: ", error);
+      console.log("Error fetching trending today: ", error);
     }
   };
 

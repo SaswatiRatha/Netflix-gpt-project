@@ -15,6 +15,8 @@ const initialState = {
   onTheAir: null,
   selectedGenre: { id: 0, name: "Genre" },
   genreMediaList: null,
+  selectedLanguage: { id: 0, name: "Select Language" },
+  languageMediaList: null,
 };
 
 const mediaSlice = createSlice({
@@ -83,6 +85,12 @@ const mediaSlice = createSlice({
     setGenreMediaList: (state, action) => {
       state.genreMediaList = action.payload;
     },
+    setSelectedLanguage: (state, action) => {
+      state.selectedLanguage = action.payload;
+    },
+    setLanguageMediaList: (state, action) => {
+      state.languageMediaList = action.payload;
+    },
   },
 });
 
@@ -102,5 +110,7 @@ export const {
   setOnTheAir,
   setSelectedGenre,
   setGenreMediaList,
+  setSelectedLanguage,
+  setLanguageMediaList,
 } = mediaSlice.actions;
 export default mediaSlice.reducer;
