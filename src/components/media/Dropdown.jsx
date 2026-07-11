@@ -23,7 +23,7 @@ const Dropdown = ({ value, type }) => {
       </button>
       {isOpen && (
         <div
-          className={`absolute grid grid-rows-9 grid-flow-col top-full ${type === "genre" ? `left-0` : `right-0`} mt-1 w-max rounded-md border border-gray-600 bg-zinc-900 shadow-lg z-50`}
+          className={`absolute grid max-h-[70vh] w-[70vw] max-w-72 grid-flow-col grid-rows-6 overflow-y-auto overflow-x-auto top-full ${type === "genre" ? `left-0` : `right-0`} mt-1 rounded-md border border-gray-600 bg-zinc-900 shadow-lg z-50 sm:w-max sm:max-w-none sm:grid-rows-9`}
         >
           {type === "genre" && (
             <button

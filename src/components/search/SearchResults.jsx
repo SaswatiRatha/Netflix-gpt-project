@@ -34,13 +34,8 @@ const SearchResults = () => {
         Showing Results for {searchText}...
       </h1>
       <div className="relative z-20 mx-4 grid grid-cols-3 gap-3 py-6 sm:mx-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-        {filteredMovies.map((movie, index) => (
-          <MovieCard
-            key={movie.id}
-            movie={movie}
-            index={index}
-            totalMovies={filteredMovies.length}
-          />
+        {filteredMovies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} variant="grid" />
         ))}
       </div>
       {isModalOpen && <MoreInfoModal />}

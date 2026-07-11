@@ -4,7 +4,7 @@ import MoviePoster from "./MoviePoster";
 import TrailerPreview from "./TrailerPreview";
 import useMovieTrailer from "../../hooks/useMovieTrailer";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, variant = "row" }) => {
   const [showTrailer, setShowTrailer] = useState(false);
   const [previewPosition, setPreviewPosition] = useState("center");
   const { poster_path: posterPath, id: movieId } = movie;
@@ -14,6 +14,10 @@ const MovieCard = ({ movie }) => {
   const timer = useRef(null);
   const cardRef = useRef(null);
   //console.log(movie);
+  const sizeClasses =
+    variant === "grid"
+      ? "aspect-2/3 w-full sm:h-60 sm:w-40"
+      : "h-52 w-36 shrink-0 sm:h-60 sm:w-40";
 
   const handleMouseEnter = () => {
     const rect = cardRef.current.getBoundingClientRect();
@@ -49,7 +53,7 @@ const MovieCard = ({ movie }) => {
       ref={cardRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative h-52 w-36 shrink-0 cursor-pointer overflow-visible rounded-md transition-all duration-300 sm:h-60 sm:w-40 ${
+      className={`relative ${sizeClasses} cursor-pointer overflow-visible rounded-md transition-all duration-300 ${
         isActive
           ? "z-50 scale-100 shadow-[0_0_0_2px_rgba(255,255,255,0.8),0_20px_45px_rgba(0,0,0,0.65)]"
           : "z-0"

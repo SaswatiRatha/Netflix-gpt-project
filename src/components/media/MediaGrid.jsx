@@ -14,14 +14,9 @@ const MediaGrid = ({ title, moviesKey, movies: moviesProp }) => {
     <div className="px-2 py-4 sm:px-2">
       <h1 className="mb-4 text-2xl font-bold text-white">{title}</h1>
       <div className="grid grid-cols-3 gap-3 px-2 pb-14 pt-6 overflow-hidden sm:grid-cols-4 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7">
-        {movies.map((movie, index) => (
+        {movies.map((movie) => (
           <div key={movie.id} className="flex justify-center">
-            <MovieCard
-              movie={movie}
-              index={index}
-              totalMovies={movies.length}
-              type={movie.type}
-            />
+            <MovieCard movie={movie} variant="grid" />
           </div>
         ))}
       </div>

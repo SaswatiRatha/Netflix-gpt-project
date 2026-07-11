@@ -48,7 +48,7 @@ const Movies = () => {
       <MainContainer
         moviesKey={selectedGenre.id === 0 ? "trendingMovies" : "genreMediaList"}
       />
-      <div className="fixed top-16 left-0 right-0 z-30 flex items-center gap-4 px-4 py-4 sm:px-8 bg-black/90 backdrop-blur-md">
+      <div className="fixed top-16 left-0 right-0 z-30 flex flex-wrap items-center gap-3 px-4 py-4 sm:gap-4 sm:px-8 bg-black/90 backdrop-blur-md">
         <h1 className="text-2xl font-bold text-white sm:text-3xl">Movies</h1>
         <Dropdown value={MOVIE_GENRES} type="genre" />
       </div>
