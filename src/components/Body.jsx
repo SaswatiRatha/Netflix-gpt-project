@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { removeCurrentUser, setCurrentUser } from "../store/slices/userSlice";
 import Header from "./common/Header";
+import Footer from "./common/Footer";
 
 const Body = () => {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ const Body = () => {
     <div className="pt-20 sm:pt-2">
       <Header />
       <Outlet />
+      <div className="md:hidden">
+        <Footer />
+      </div>
     </div>
   );
 };

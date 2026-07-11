@@ -95,30 +95,35 @@ const SearchBar = () => {
   }, [showSearchBar]);
 
   return (
-    <div className="flex items-center gap-2">
-      <div className="relative">
+    <div className={`flex  items-center gap-2`}>
+      <div className="absolute left-0 top-full w-screen px-4 pr-8 sm:relative sm:w-auto sm:px-2">
         <input
           ref={inputFocus}
           value={searchWord}
           onChange={handleInputChange}
           className={`
-      bg-black/80
-      text-white
-      rounded
-      border
-      border-gray-500
-      transition-all
-      duration-300
-      outline-none
-      p-2
-      ${showSearchBar ? "w-64 opacity-100" : "w-0 opacity-0 border-0 px-0"}
-    `}
+    bg-black/80
+    text-white
+    rounded
+    border
+    border-gray-500
+    transition-all
+    duration-300
+    outline-none
+    p-2
+    text-sm sm:text-base
+    ${
+      showSearchBar
+        ? "w-full sm:w-64 opacity-100"
+        : "w-0 opacity-0 border-0 px-0"
+    }
+  `}
           placeholder="What do you want to watch?"
         />
         {showSearchBar && (
           <button
             onClick={() => setShowSearchBar((prev) => !prev)}
-            className="absolute right-3 top-4 -translate-y-1/2 col-span-1 items-center justify-center text-white inline-block text-2xl hover:scale-110 transition-transform duration-200 sm:col-span-1"
+            className="absolute md:right-3 right-10 top-4 -translate-y-1/2 col-span-1 items-center justify-center text-white inline-block text-2xl hover:scale-110 transition-transform duration-200 md:col-span-1"
           >
             x
           </button>

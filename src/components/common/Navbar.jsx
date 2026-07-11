@@ -13,7 +13,7 @@ const Navbar = () => {
         CineVerse
       </h1>
 
-      <ul className="hidden sm:flex items-center gap-5 text-sm lg:text-base xl:text-base font-medium whitespace-nowrap">
+      <ul className="hidden md:flex items-center gap-5 text-sm lg:text-base xl:text-base font-medium whitespace-nowrap">
         <Link
           to="/browse"
           className="text-white hover:text-gray-300 transition-colors"
@@ -49,7 +49,7 @@ const Navbar = () => {
         </Link>
       </ul>
 
-      <div className="relative sm:hidden">
+      <div className="relative flex items-center md:hidden">
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="flex items-center gap-2 text-white"
@@ -100,7 +100,7 @@ const Navbar = () => {
             <Link
               to="/language"
               onClick={() => setIsMenuOpen(false)}
-              className="text-white hover:text-gray-300 transition-colors"
+              className="block px-4 py-3 text-white hover:bg-zinc-800"
             >
               Browse by language
             </Link>

@@ -5,22 +5,21 @@ const TrailerPreview = ({
   title,
   trailer,
   isActive,
-  index,
-  totalMovies,
+  previewPosition,
   movie,
 }) => {
-  const previewPosition =
-    index === 0
-      ? "left-0"
-      : index === totalMovies - 1
-        ? "right-0"
-        : "left-1/2 -translate-x-1/2";
+  const previewClass =
+    previewPosition === "left"
+      ? "left-0 origin-left"
+      : previewPosition === "right"
+        ? "right-0 origin-right"
+        : "left-1/2 -translate-x-1/2 origin-center";
 
   const shouldShowTrailer = isActive && Boolean(trailer);
 
   return (
     <div
-      className={`absolute top-1/2 ${previewPosition}
+      className={`absolute top-1/2 ${previewClass}
         w-[90vw] max-w-104 overflow-hidden rounded-3xl border border-gray-500 bg-zinc-900 shadow-[0_20px_60px_rgba(0,0,0,0.8)]
         transition-all duration-300 ease-out
         ${

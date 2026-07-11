@@ -40,7 +40,7 @@ const MovieList = ({ title, moviesKey, type }) => {
         </button>
         <div
           ref={sliderRef}
-          className="flex gap-3 pt-6 pb-14 overflow-x-auto overflow-y-hidden scrollbar-none"
+          className="flex gap-3 pl-1 pt-6 pb-14 overflow-x-auto overflow-y-hidden scrollbar-none"
         >
           {filteredMovies.map((movie, index) => (
             <MovieCard

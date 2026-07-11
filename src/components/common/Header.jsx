@@ -8,17 +8,17 @@ const Header = () => {
   //console.log(user);
 
   return (
-    <header className="fixed left-0 top-0 z-50 flex w-full items-center justify-between bg-black/90 px-4 py-4  shadow-lg sm:px-8">
+    <header className="fixed left-0 top-0 z-50 flex w-full items-center justify-between bg-black/90 px-4 py-3 shadow-lg sm:px-6 md:px-8 md:py-4">
       <Navbar />
 
       {user && (
-        <div className="ml-auto flex items-center gap-2 md:gap-4">
-          <SearchBar />
+        <div className="ml-auto flex box-border items-center gap-2 md:gap-4">
+          <SearchBar screen="normal" />
 
           {/* <p className="hidden md:block text-sm font-medium text-gray-300">
             {user.name}
           </p> */}
-          <Profile />
+          <Profile screen="normal" />
         </div>
       )}
     </header>

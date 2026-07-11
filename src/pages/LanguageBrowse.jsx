@@ -50,7 +50,7 @@ const LanguageBrowse = () => {
   //console.log(mediaList);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black">
+    <div className="relative min-h-screen px-4 overflow-hidden bg-black">
       <img
         className="fixed inset-0 h-dvh w-full object-cover"
         src={LOGIN_BG}
@@ -58,7 +58,7 @@ const LanguageBrowse = () => {
       />
       <div className="fixed inset-0 z-10 bg-black/80" />
 
-      <div className="fixed top-16 left-0 right-0 z-30 flex items-center justify-between px-4 py-4 sm:px-8 bg-black/90 backdrop-blur-md">
+      <div className="fixed top-16  left-0 right-0 z-30 flex items-center justify-between px-4 py-4 sm:px-8 bg-black/90 backdrop-blur-md">
         <h1 className="text-2xl font-bold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] sm:text-3xl">
           Browse by Language
         </h1>
@@ -70,7 +70,7 @@ const LanguageBrowse = () => {
       </div>
 
       <div className="bg-black">
-        <div className="relative z-10  pb-8 pt-70 sm:-mt-14 md:-mt-28 lg:-mt-34">
+        <div className="relative z-10 pb-8 pt-70 sm:-mt-14 md:-mt-28 lg:-mt-34">
           <MediaGrid title="" movies={filteredMediaList} />
         </div>
       </div>

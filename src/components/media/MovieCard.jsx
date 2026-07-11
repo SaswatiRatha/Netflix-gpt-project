@@ -4,16 +4,31 @@ import MoviePoster from "./MoviePoster";
 import TrailerPreview from "./TrailerPreview";
 import useMovieTrailer from "../../hooks/useMovieTrailer";
 
-const MovieCard = ({ movie, index, totalMovies }) => {
+const MovieCard = ({ movie }) => {
   const [showTrailer, setShowTrailer] = useState(false);
+  const [previewPosition, setPreviewPosition] = useState("center");
   const { poster_path: posterPath, id: movieId } = movie;
   const title = movie.title || movie.name || "Movie";
   const trailerKey = `${movie.media_type}:${movieId}`;
 
   const timer = useRef(null);
+  const cardRef = useRef(null);
   //console.log(movie);
 
   const handleMouseEnter = () => {
+    const rect = cardRef.current.getBoundingClientRect();
+
+    const leftSpace = rect.left;
+    const rightSpace = window.innerWidth - rect.right;
+
+    if (leftSpace < 180) {
+      setPreviewPosition("left");
+    } else if (rightSpace < 180) {
+      setPreviewPosition("right");
+    } else {
+      setPreviewPosition("center");
+    }
+
     timer.current = setTimeout(() => setShowTrailer(true), 300);
   };
 
@@ -31,6 +46,7 @@ const MovieCard = ({ movie, index, totalMovies }) => {
 
   return (
     <div
+      ref={cardRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={`relative h-52 w-36 shrink-0 cursor-pointer overflow-visible rounded-md transition-all duration-300 sm:h-60 sm:w-40 ${
@@ -46,8 +62,7 @@ const MovieCard = ({ movie, index, totalMovies }) => {
         posterPath={posterPath}
         trailer={trailer}
         isActive={isActive}
-        index={index}
-        totalMovies={totalMovies}
+        previewPosition={previewPosition}
         movie={movie}
       />
     </div>
