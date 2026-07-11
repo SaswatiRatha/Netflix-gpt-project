@@ -52,10 +52,7 @@ const mediaSlice = createSlice({
       state.popularTv = action.payload;
     },
     addToWatchList: (state, action) => {
-      console.log(action.payload);
-
       const exists = state.myList.find((item) => item.id === action.payload.id);
-      console.log(exists);
 
       if (!exists) {
         state.myList.push(action.payload);

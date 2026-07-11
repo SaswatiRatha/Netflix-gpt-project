@@ -8,7 +8,7 @@ const MediaGrid = ({ title, moviesKey, movies: moviesProp }) => {
   const movies = moviesProp ?? moviesFromStore;
 
   if (!movies?.length) return null;
-  console.log(moviesKey);
+  //console.log(moviesKey);
 
   return (
     <div className="px-4 py-4 sm:px-8">

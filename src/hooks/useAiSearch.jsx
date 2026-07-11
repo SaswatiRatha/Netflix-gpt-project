@@ -14,7 +14,6 @@ const useAiSearch = () => {
     setError(null);
 
     try {
-      console.log("Search started");
       const aiRes = await fetch(
         "https://api.groq.com/openai/v1/chat/completions",
         {
@@ -56,22 +55,16 @@ const useAiSearch = () => {
       );
 
       if (!aiRes.ok) throw new Error("AI request failed");
-      console.log("Search started");
-
-      console.log("AI response received");
 
       const aiData = await aiRes.json();
 
-      console.log(aiData);
+      //console.log(aiData);
 
       const text = aiData.choices?.[0]?.message?.content?.trim() || "[]";
-
-      console.log(text);
 
       const clean = text.replace(/```json|```/g, "").trim();
       const titles = JSON.parse(clean);
 
-      console.log("titles", titles);
       const tmdbResults = await Promise.all(
         titles.map(async ({ title, type }) => {
           const searchTitle = title.replace(/\s*\(\d{4}\)\s*$/, "");
@@ -84,7 +77,6 @@ const useAiSearch = () => {
             API_OPTIONS,
           );
           const json = await res.json();
-          console.log(json);
 
           let result = json.results?.[0] || null;
           if (!result) {

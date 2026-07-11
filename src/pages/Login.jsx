@@ -56,7 +56,7 @@ const Login = () => {
             .catch((error) => {
               console.log(error);
             });
-          console.log(user);
+          //console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -98,7 +98,7 @@ const Login = () => {
         src={LOGIN_BG}
         alt="background-img"
       />
-      <form className="flex flex-col absolute left-1/2 top-20 z-20 w-[min(92vw,28rem)] -translate-x-1/2 rounded-lg bg-black/80 p-6 text-white shadow-xl sm:p-10">
+      <form className="flex flex-col absolute left-1/2 top-30 z-20 w-[min(90vw,26rem)] -translate-x-1/2 rounded-lg bg-black/80 p-6 text-white shadow-xl sm:p-10">
         <h1 className="font-bold text-3xl pb-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
