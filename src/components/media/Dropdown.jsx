@@ -1,19 +1,25 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setSelectedGenre,
   setSelectedLanguage,
 } from "../../store/slices/mediaSlice";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 const Dropdown = ({ value, type }) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectedGenre = useSelector((state) => state.media.selectedGenre);
   const selectedLanguage = useSelector((state) => state.media.selectedLanguage);
   const dispatch = useDispatch();
+  const dropdownref = useRef(null);
+  useOutsideClick(dropdownref, () => setIsOpen(false), isOpen);
   //console.log(genres);
 
   return (
-    <div className="relative flex flex-col justify-center items-center">
+    <div
+      ref={dropdownref}
+      className="relative flex flex-col justify-center items-center"
+    >
       <button
         onClick={() => setIsOpen((prev) => !prev)}
         className="w-full flex items-center rounded-md border-2 border-gray-500 bg-zinc-900 px-4 py-1 text-white sm:w-auto text-base"

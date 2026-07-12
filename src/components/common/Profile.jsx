@@ -1,14 +1,17 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { PROFILE } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 const Profile = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const user = useSelector((state) => state.user.currentUser);
   const navigate = useNavigate();
+  const dropdownref = useRef(null);
+  useOutsideClick(dropdownref, () => setIsProfileOpen(false), isProfileOpen);
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -19,7 +22,7 @@ const Profile = () => {
       });
   };
   return (
-    <div className="relative">
+    <div ref={dropdownref} className="relative">
       <button
         onClick={() => setIsProfileOpen((prev) => !prev)}
         className="flex gap-1 items-center"

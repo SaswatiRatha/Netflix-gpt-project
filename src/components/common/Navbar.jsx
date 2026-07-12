@@ -1,9 +1,18 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
+import { useRef, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import useOutsideClick from "../../hooks/useOutsideClick";
+const navLinkClass = ({ isActive }) =>
+  `transition-colors ${
+    isActive
+      ? "font-bold text-white"
+      : "font-medium text-gray-300 hover:text-white"
+  }`;
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const dropdownref = useRef(null);
+  useOutsideClick(dropdownref, () => setIsMenuOpen(false), isMenuOpen);
+
   return (
     <div className="flex flex-1 items-center gap-6">
       <h1
@@ -14,42 +23,27 @@ const Navbar = () => {
       </h1>
 
       <ul className="hidden md:flex items-center gap-5 text-sm lg:text-base xl:text-base font-medium whitespace-nowrap">
-        <Link
-          to="/browse"
-          className="text-white hover:text-gray-300 transition-colors"
-        >
+        <NavLink to="/browse" className={navLinkClass}>
           Home
-        </Link>
+        </NavLink>
 
-        <Link
-          to="/movies"
-          className="text-white hover:text-gray-300 transition-colors"
-        >
+        <NavLink to="/movies" className={navLinkClass}>
           Movies
-        </Link>
+        </NavLink>
 
-        <Link
-          to="/tv"
-          className="text-white hover:text-gray-300 transition-colors"
-        >
+        <NavLink to="/tv" className={navLinkClass}>
           TV Shows
-        </Link>
+        </NavLink>
 
-        <Link
-          to="/watchlist"
-          className="text-white hover:text-gray-300 transition-colors"
-        >
+        <NavLink to="/watchlist" className={navLinkClass}>
           My List
-        </Link>
-        <Link
-          to="/language"
-          className="text-white hover:text-gray-300 transition-colors"
-        >
+        </NavLink>
+        <NavLink to="/language" className={navLinkClass}>
           Browse by language
-        </Link>
+        </NavLink>
       </ul>
 
-      <div className="relative flex items-center md:hidden">
+      <div ref={dropdownref} className="relative flex items-center md:hidden">
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="flex items-center gap-2 text-white"

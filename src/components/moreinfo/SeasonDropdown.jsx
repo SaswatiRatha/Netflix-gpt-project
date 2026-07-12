@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedSeason } from "../../store/slices/modalSlice";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 const SeasonDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { seasons, selectedSeason } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
+  const dropdownref = useRef(null);
+  useOutsideClick(dropdownref, () => setIsOpen(false), isOpen);
 
   return (
-    <div className="relative flex flex-col">
+    <div ref={dropdownref} className="relative flex flex-col">
       <button
         onClick={() => setIsOpen((prev) => !prev)}
         className="mt-2 w-full rounded-md border-2 border-gray-500 bg-zinc-900 px-4 py-2 text-white sm:w-auto"
