@@ -1,7 +1,6 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { useRef, useState } from "react";
-import { PROFILE } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useOutsideClick from "../../hooks/useOutsideClick";
@@ -21,14 +20,20 @@ const Profile = () => {
         console.log(error);
       });
   };
+  const handleProfileClick = () => {
+    if (window.matchMedia("(max-width: 639px)").matches) {
+      navigate("/profile");
+    } else {
+      setIsProfileOpen((prev) => !prev);
+    }
+  };
   return (
     <div ref={dropdownref} className="relative">
-      <button
-        onClick={() => setIsProfileOpen((prev) => !prev)}
-        className="flex gap-1 items-center"
-      >
-        <img src={PROFILE} alt="profile" className="w-8 h-8 rounded-lg" />
-        <span className="fill-white text-white text-xs ml-2">▼</span>
+      <button onClick={handleProfileClick} className="flex gap-1 items-center">
+        <img src={user?.photo} alt="profile" className="w-8 h-8 rounded-lg" />
+        <span className="fill-white text-white hidden sm:block text-xs ml-2">
+          ▼
+        </span>
       </button>
       {isProfileOpen && (
         <div className="absolute flex flex-col top-full right-0  mt-1 w-max rounded-md border border-gray-600 bg-zinc-900 shadow-lg z-50">
@@ -38,7 +43,10 @@ const Profile = () => {
           >
             {user.name}
           </h1>
-          <button className="w-full px-4 py-2 text-center text-white hover:bg-gray-700 text-base">
+          <button
+            onClick={() => navigate("/manage-profile")}
+            className="w-full px-4 py-2 text-center text-white hover:bg-gray-700 text-base"
+          >
             Manage Profile
           </button>
           <button

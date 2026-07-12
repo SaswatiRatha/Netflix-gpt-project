@@ -41,14 +41,19 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
+            photoURL: `https://ui-avatars.com/api/?name=${encodeURIComponent(
+              name.current.value,
+            )}&background=E50914&color=000000&bold=true`,
           })
             .then(() => {
-              const { uid, email, displayName } = auth.currentUser;
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+
               dispatch(
                 setCurrentUser({
                   uid: uid,
                   email: email,
                   name: displayName,
+                  photo: photoURL,
                 }),
               );
               //navigate("/browse");
@@ -98,6 +103,7 @@ const Login = () => {
         src={LOGIN_BG}
         alt="background-img"
       />
+
       <form className="flex flex-col absolute left-1/2 top-30 z-20 w-[min(90vw,26rem)] -translate-x-1/2 rounded-lg bg-black/80 p-6 text-white shadow-xl sm:p-10">
         <h1 className="font-bold text-3xl pb-4">
           {isSignInForm ? "Sign In" : "Sign Up"}

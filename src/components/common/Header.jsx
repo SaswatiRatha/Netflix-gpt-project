@@ -13,12 +13,14 @@ const Header = () => {
 
       {user && (
         <div className="ml-auto flex box-border items-center gap-2 md:gap-4">
-          <SearchBar screen="normal" />
+          <SearchBar />
 
           {/* <p className="hidden md:block text-sm font-medium text-gray-300">
             {user.name}
           </p> */}
-          <Profile screen="normal" />
+          <div className="hidden sm:block">
+            <Profile />
+          </div>
         </div>
       )}
     </header>

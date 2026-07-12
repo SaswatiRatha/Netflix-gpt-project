@@ -14,12 +14,13 @@ const Body = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const { uid, email, displayName } = user;
+        const { uid, email, displayName, photoURL } = user;
         dispatch(
           setCurrentUser({
             uid: uid,
             email: email,
             name: displayName,
+            photo: photoURL,
           }),
         );
 
@@ -37,7 +38,7 @@ const Body = () => {
     <div className="pt-20 sm:pt-2">
       <Header />
       <Outlet />
-      <div className="md:hidden">
+      <div className="sm:hidden">
         <Footer />
       </div>
     </div>

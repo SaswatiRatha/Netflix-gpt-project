@@ -1,9 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import Profile from "./Profile";
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <div className="fixed left-0 bottom-0 z-50 px-4 py-2 flex justify-between text-white bg-black w-full">
-      <button className="flex flex-col items-center">
+      <button
+        onClick={() => navigate("/browse")}
+        className="flex flex-col items-center"
+      >
         <img
           className="w-8 h-8"
           src="https://img.icons8.com/material-sharp/24/FFFFFF/home.png"

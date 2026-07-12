@@ -9,6 +9,8 @@ import MyWatchList from "./pages/MyWatchList";
 import Movies from "./pages/Movies";
 import TVShows from "./pages/TVShows";
 import LanguageBrowse from "./pages/LanguageBrowse";
+import ManageProfile from "./pages/ManageProfile";
+import UserProfile from "./pages/UserProfile";
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -42,6 +44,14 @@ const appRouter = createBrowserRouter([
       {
         path: "language",
         element: <LanguageBrowse />,
+      },
+      {
+        path: "manage-profile",
+        element: <ManageProfile />,
+      },
+      {
+        path: "profile",
+        element: <UserProfile />,
       },
     ],
   },

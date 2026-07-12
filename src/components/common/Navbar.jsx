@@ -60,13 +60,13 @@ const Navbar = () => {
 
         {isMenuOpen && (
           <div className="absolute left-0 top-full mt-3 w-44 rounded-md border border-gray-700 bg-black shadow-xl">
-            <Link
+            {/* <Link
               to="/browse"
               onClick={() => setIsMenuOpen(false)}
               className="block px-4 py-3 text-white hover:bg-zinc-800"
             >
               Home
-            </Link>
+            </Link> */}
 
             <Link
               to="/movies"
