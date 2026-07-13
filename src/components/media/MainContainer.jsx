@@ -2,10 +2,12 @@ import { useSelector } from "react-redux";
 import VideoTitle from "./VideoTitle";
 import VideoBackground from "./VideoBackground";
 import MainSpinner from "../MainSpinner";
+import useIsMobile from "../../hooks/useIsMobile";
+import MobileHero from "./MobileHero";
 
 const MainContainer = ({ moviesKey = "trending" }) => {
   const movies = useSelector((state) => state.media?.[moviesKey]);
-
+  const isMobile = useIsMobile();
   //if (!movies) return;
   if (!movies || movies.length === 0) {
     return <MainSpinner />;
@@ -13,6 +15,10 @@ const MainContainer = ({ moviesKey = "trending" }) => {
   //console.log(movies);
   const mainMovie = movies[0];
   //console.log(mainMovie);
+
+  if (isMobile) {
+    return <MobileHero movie={mainMovie} />;
+  }
 
   return (
     <div>

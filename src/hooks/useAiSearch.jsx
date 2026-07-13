@@ -28,7 +28,7 @@ const useAiSearch = () => {
               {
                 role: "system",
                 content: `You are a recommendation engine.
-                        Return ONLY a JSON array of 8-10 objects in this format:
+                        Return ONLY a JSON array of 20 objects in this format:
                         [
                           {
                             "title": "Breaking Bad",

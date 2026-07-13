@@ -19,8 +19,6 @@ const MoreInfoModal = () => {
     episodes,
   } = useSelector((state) => state.modal);
 
-  console.log(selectedMedia);
-
   const dispatch = useDispatch();
   useLockBodyScroll();
   useMediaDetails(selectedMedia.id, selectedMedia.media_type);
@@ -32,10 +30,9 @@ const MoreInfoModal = () => {
     if (!episodes || !seasons) return;
   }
 
-  //console.log(selectedMedia);
   return createPortal(
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/70 p-4 sm:p-6">
-      <div className="relative mx-auto mt-5 w-full max-w-[95vw] rounded-xl bg-black shadow-2xl sm:w-[70vw] sm:max-w-5xl">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/70 p-0 sm:p-6">
+      <div className="relative mx-auto min-h-screen w-full rounded-none bg-black shadow-2xl sm:mt-5 sm:min-h-0 sm:w-[70vw] sm:max-w-5xl sm:rounded-xl">
         <button
           onClick={() => dispatch(closeModal())}
           className="absolute top-4 right-4 bg-gray-600 rounded-full px-4 py-2 text-white transition-all duration-300 hover:bg-gray-700"

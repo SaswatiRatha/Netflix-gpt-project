@@ -25,7 +25,7 @@ const SearchBar = () => {
 
   return (
     <div className={`flex  items-center gap-2`}>
-      <div className="absolute left-0 top-full w-screen px-4 pr-8 sm:relative sm:w-auto sm:px-2">
+      <div className="relative hidden sm:block w-screen px-4 pr-8 sm:w-auto sm:px-2">
         <input
           ref={inputFocus}
           value={searchWord}
@@ -41,6 +41,7 @@ const SearchBar = () => {
     outline-none
     p-2
     text-sm sm:text-base
+    
     ${
       showSearchBar
         ? "w-full sm:w-64 opacity-100"
@@ -52,7 +53,7 @@ const SearchBar = () => {
         {showSearchBar && (
           <button
             onClick={() => setShowSearchBar((prev) => !prev)}
-            className="absolute md:right-3 right-10 top-4 -translate-y-1/2 col-span-1 items-center justify-center text-white inline-block text-2xl hover:scale-110 transition-transform duration-200 md:col-span-1"
+            className="absolute md:right-3 right-7 top-4 -translate-y-1/2 col-span-1 items-center justify-center text-white inline-block text-2xl hover:scale-110 transition-transform duration-200 md:col-span-1"
           >
             x
           </button>

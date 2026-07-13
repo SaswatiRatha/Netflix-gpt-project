@@ -75,8 +75,12 @@ const useSearchMedia = () => {
     dispatch(setSearchResults(normalizeMovies(tmdbSearchResult)));
     dispatch(setGptMovies(aiResults));
   };
+  const hasTypedRef = useRef(false);
 
   useEffect(() => {
+    if (searchWord) hasTypedRef.current = true;
+    if (!searchWord && !hasTypedRef.current) return;
+
     const timer = setTimeout(() => {
       searchMedia(searchWord);
     }, 400);

@@ -14,9 +14,10 @@ import {
 import Dropdown from "../components/media/Dropdown";
 import { TV_GENRES } from "../utils/constants";
 import MediaGrid from "../components/media/MediaGrid";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const TVShows = () => {
+  const [scrolled, setScrolled] = useState(false);
   const isModalOpen = useSelector((state) => state.modal.isModalOpen);
   const selectedGenre = useSelector((state) => state.media.selectedGenre);
   const dispatch = useDispatch();
@@ -34,13 +35,27 @@ const TVShows = () => {
     selectedGenre.id === 0,
   );
   useTrendingBanner();
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50); // Change after 50px
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="relative">
       <MainContainer
         moviesKey={selectedGenre.id === 0 ? "trendingTV" : "genreMediaList"}
       />
-      <div className="fixed top-16 left-0 right-0 z-30 flex flex-wrap items-center gap-3 px-4 py-4 sm:gap-4 sm:px-8 bg-black/90 backdrop-blur-md">
+      <div
+        className={`fixed top-12 sm:top-16 left-0 right-0 z-30
+                    flex items-center gap-4 px-4 py-4
+                    transition-all duration-300
+                    ${scrolled ? "bg-black shadow-lg" : "bg-transparent"}`}
+      >
         <h1 className="text-2xl font-bold text-white sm:text-3xl">TV</h1>
         <Dropdown value={TV_GENRES} type="genre" />
       </div>
