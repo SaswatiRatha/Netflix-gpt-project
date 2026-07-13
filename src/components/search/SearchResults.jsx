@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import MovieCard from "../media/MovieCard";
 import { LOGIN_BG } from "../../utils/constants";
 import MoreInfoModal from "../moreinfo/MoreInfoModal";
+import MobileSearchInput from "./MobileSearchInput";
 
 const SearchResults = () => {
   const searchResultMovies =
@@ -30,7 +31,8 @@ const SearchResults = () => {
         alt="background-img"
       />
       <div className="fixed inset-0 z-10 bg-black/80" />
-      <h1 className="relative z-30 mx-4 pt-20 text-2xl font-bold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] sm:mx-8 sm:text-3xl">
+      <MobileSearchInput />
+      <h1 className="relative z-30 mx-4 pt-4 sm:pt-20 text-2xl font-bold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] sm:mx-8 sm:text-3xl">
         Showing Results for {searchText}...
       </h1>
       <div className="relative z-20 mx-4 grid grid-cols-3 gap-3 py-6 sm:mx-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
